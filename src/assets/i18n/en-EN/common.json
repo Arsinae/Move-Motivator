@@ -1,0 +1,8 @@
+{
+  "COMMON": {
+    "MAIL": "Email adress",
+    "USERNAME": "Username",
+    "VALIDATE": "Validate",
+    "CANCEL": "Cancel"
+  }
+}

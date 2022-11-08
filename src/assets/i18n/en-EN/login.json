@@ -1,0 +1,38 @@
+{
+  "LOGIN": {
+    "PASSWORD": "Password",
+    "LOGIN": "Login",
+    "ERROR": "Login error",
+    "NO_ACCOUNT": "No account yet ? Sign up",
+    "EMAIL_NOT_FOUND": "Email / password not found",
+    "INVALID_PASSWORD": "Bad password",
+    "USER_DISABLED": "Disabled user"
+  },
+  "SIGNUP": {
+    "CONFIRM_PASSWORD": "Confirm password",
+    "PASSWORD_DONT_MATCH": "Passwords don't match",
+    "PASSWORD_LENGTH": "Password should have at least 8 characters",
+    "SIGNUP": "Sign Up",
+    "HAVE_ACCOUNT": "Already have an account ? Login",
+    "CREATED": "Account created",
+    "ERROR": "We have encountered an error during your account creation",
+    "EMAIL_ALREADY_USE": "A user with this email already exists",
+    "INVALID_EMAIL": "Invalid email",
+    "WEAK_PASSWORD": "Password too weak"
+  },
+  "FORGET_PASSWORD": {
+    "TITLE": "Forgot Password ?",
+    "MAIL_SENT": "If this email is link to an account, you should get an email",
+    "ERROR": "We have encountered an error, try again later",
+    "INVALID_EMAIL": "Invalid email address",
+    "USER_NOT_FOUND": "Unknown User"
+  },
+  "AUTH_ACTION": {
+    "CHANGE_PASSWORD": "Password Reset",
+    "NEW_PASSWORD": "New Password",
+    "PASSWORD_CHANGED": "Password updated",
+    "ERROR": "We have encountered an error during your password modification",
+    "EXPIRED_CODE": "Code expired",
+    "INVALID_CODE": "Invalid code"
+  }
+}
