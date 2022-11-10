@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/theming";
+@import "./assets/scss/themes.scss";
+@include angular-material-theme($material-light-theme);
+
+.dark-theme {
+  @include angular-material-color($material-dark-theme);
+}
+
+.page-title {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.full-width-input {
+  width: 100%;
+  margin: 12px 0;
+}
+
+.primary-snackbar {
+  background-color: #424242;
+  color: white;
+}
+
+.danger-snackbar {
+  background-color: #f03f3f;
+  color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #424242 inset !important;
+    -webkit-text-fill-color: white !important;
+}

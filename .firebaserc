@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "rd-revival": {
+      "hosting": {
+        "angular-fire-boot": [
+          "rd-revival"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "rd-revival"
+  }
+}
