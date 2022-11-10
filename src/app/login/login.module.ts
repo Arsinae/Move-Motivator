@@ -8,6 +8,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DynamicLocaleId } from '../utils/dynamic-locale';
@@ -32,6 +33,7 @@ import { AuthActionComponent } from './auth-action/auth-action.component';
     MatSnackBarModule,
     MatFormFieldModule,
     MatDialogModule,
+    MatCheckboxModule,
     TranslateModule
   ],
   exports: [

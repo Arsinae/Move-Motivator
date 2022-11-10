@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { browserSessionPersistence, inMemoryPersistence } from '@angular/fire/auth'
 import { User } from '../models/user';
 import { AuthService } from '../services/auth/auth.service';
 import { UserService } from '../services/server-data/user.service';
@@ -30,11 +31,12 @@ export class LoginComponent implements OnInit {
     private translate: TranslateService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      stayConnected: [true]
     })
     this.signUpForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -65,14 +67,14 @@ export class LoginComponent implements OnInit {
   }
 
   connect() {
-    this.authService.authentify(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).then((auth) => {
+    this.authService.authentify(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).then(async (auth) => {
       if (auth && auth.user) {
         this.getConnectedUser(auth.user.uid);
+        await this.authService.setConnectionPersistence(this.loginForm.get('stayConnected')?.value === true ? browserSessionPersistence : inMemoryPersistence);
       }
     }).catch((err) => {
       console.log(err);
-      const commonErrors: any = {"auth/user-not-found": "EMAIL_NOT_FOUND", "auth/wrong-password": 'INVALID_PASSWORD', "user-disabled": "USER_DISABLED"}
-      const msg = (err && commonErrors[err.code] !== undefined) ? commonErrors[err.code] : 'ERROR';
+      const msg = this.authService.getAuthError(err.code);
       this.snackbar.open(this.translate.instant(`LOGIN.${msg}`), '', {panelClass: 'danger-snackbar', duration: 4000});
     });
   }
@@ -102,8 +104,7 @@ export class LoginComponent implements OnInit {
       }
     }).catch(err => {
       console.log(err);
-      const commonErrors: any = {"auth/email-already-in-use": "EMAIL_ALREADY_USE", "auth/invalid-email": 'INVALID_EMAIL', "auth/weak-password": "WEAK_PASSWORD"}
-      const msg = (err && commonErrors[err.code] !== undefined) ? commonErrors[err.code] : 'ERROR';
+      const msg = this.authService.getAuthError(err.code);
       this.snackbar.open(this.translate.instant(`SIGNUP.${msg}`), '', {panelClass: 'danger-snackbar', duration: 4000});
     })
   }
@@ -114,8 +115,7 @@ export class LoginComponent implements OnInit {
         this.authService.sendPasswordResetEmail(res.email).then(() => {
           this.snackbar.open(this.translate.instant('FORGET_PASSWORD.MAIL_SENT'), '', {panelClass: 'primary-snackbar', duration: 4000});
         }).catch((err) => {
-          const commonErrors: any = {"auth/user-not-found": "USER_NOT_FOUND", "auth/invalid-email": 'INVALID_EMAIL'}
-          const msg = (err && commonErrors[err.code] !== undefined) ? commonErrors[err.code] : 'ERROR';
+          const msg = this.authService.getAuthError(err.code);
           this.snackbar.open(this.translate.instant(`FORGET_PASSWORD.${msg}`), '', {panelClass: 'danger-snackbar', duration: 4000});
         })
       }

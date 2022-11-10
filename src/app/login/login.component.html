@@ -17,6 +17,10 @@
           <input matInput type="password" formControlName="password" [placeholder]="'LOGIN.PASSWORD' | translate" (keyup.enter)="connect()">
         </mat-form-field>
 
+        <mat-checkbox class="example-margin" formControlName="stayConnected">
+          {{'LOGIN.KEEP_CONNECTION' | translate}}
+        </mat-checkbox>
+
         <div class="right-align">
           <a (click)="switchPage('signup')">{{ 'LOGIN.NO_ACCOUNT' | translate }}</a>
         </div>

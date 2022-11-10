@@ -2,6 +2,7 @@
   "LOGIN": {
     "PASSWORD": "Mot de passe",
     "LOGIN": "Connexion",
+    "KEEP_CONNECTION": "Rester connecté",
     "ERROR": "Erreur de connexion",
     "NO_ACCOUNT": "Vous n'avez pas de compte ? Inscrivez-vous",
     "EMAIL_NOT_FOUND": "Email / mot de passe non trouvé",

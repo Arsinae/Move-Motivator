@@ -55,8 +55,7 @@ export class AuthActionComponent implements OnInit {
       });
     }).catch(err => {
       console.log(err);
-      const commonErrors: any = {"auth/expired-action-code": "EXPIRED_CODE", "auth/invalid-action-code": 'INVALID_CODE'}
-      const msg = (err && commonErrors[err.code] !== undefined) ? commonErrors[err.code] : 'ERROR';
+      const msg = this.authService.getAuthError(err.code);
       this.snackbar.open(this.translate.instant(`AUTH_ACTION.${msg}`), '', {panelClass: 'danger-snackbar', duration: 4000});
     })
   }

@@ -8,6 +8,16 @@ import { User } from 'src/app/models/user';
 export class AuthService {
 
   private user: User | null = null;
+  private authErrors: any = {
+    "auth/user-not-found": "EMAIL_NOT_FOUND",
+    "auth/wrong-password": 'INVALID_PASSWORD',
+    "user-disabled": "USER_DISABLED",
+    "auth/email-already-in-use": "EMAIL_ALREADY_USE",
+    "auth/invalid-email": "INVALID_EMAIL",
+    "auth/weak-password": "WEAK_PASSWORD",
+    "auth/expired-action-code": "EXPIRED_CODE",
+    "auth/invalid-action-code": "INVALID_CODE"
+  }
 
   constructor(
     private auth: Auth.Auth
@@ -26,6 +36,10 @@ export class AuthService {
     return this.auth.signOut();
   }
 
+  setConnectionPersistence(persistence: Auth.Persistence) {
+    return this.auth.setPersistence(persistence);
+  }
+
   isConnected() {
     return Auth.authState(this.auth);
   }
@@ -35,7 +49,7 @@ export class AuthService {
   }
 
   getCurrentUser() {
-    return this.getCurrentUser;
+    return this.user;
   }
 
   sendPasswordResetEmail(email: string) {
@@ -48,5 +62,9 @@ export class AuthService {
 
   changePassword(code: string, password: string) {
     return Auth.confirmPasswordReset(this.auth, code, password);
+  }
+
+  getAuthError(errorCode: string): string {
+    return (errorCode && this.authErrors[errorCode] !== undefined) ? this.authErrors[errorCode] : 'ERROR'
   }
 }
