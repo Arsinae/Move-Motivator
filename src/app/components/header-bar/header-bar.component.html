@@ -1,0 +1,18 @@
+<mat-toolbar [style.justifyContent]="'space-between'" color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+  </button>
+
+  <div>Angular Fire Boot</div>
+
+  <button mat-icon-button>
+      <mat-icon [matMenuTriggerFor]="userMenu">person</mat-icon>
+  </button>
+  
+</mat-toolbar>
+
+<mat-menu #userMenu>
+  <button mat-menu-item (click)="logout()">
+      {{ "MENU.LOGOUT" | translate }}
+  </button>
+</mat-menu>

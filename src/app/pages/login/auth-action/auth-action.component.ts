@@ -3,7 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn,
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from 'src/app/services/auth/auth.service';
+
+import { AuthService } from '@app/services/auth/auth.service';
 import { PasswordErrorStateMatcher } from '../login.component';
 
 @Component({

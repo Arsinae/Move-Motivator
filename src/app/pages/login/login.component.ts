@@ -6,9 +6,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { browserSessionPersistence, inMemoryPersistence } from '@angular/fire/auth'
-import { User } from '../models/user';
-import { AuthService } from '../services/auth/auth.service';
-import { UserService } from '../services/server-data/user.service';
+
+import { User } from '@app/models/user';
+import { AuthService } from '@app/services/auth/auth.service';
+import { UserService } from '@server-data/user.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @Component({
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.authService.isConnected().subscribe(authState => {
       if (authState) {
-        this.getConnectedUser(authState.uid);
+        this.router.navigate(['/home']);
       }
     });
   }

@@ -1,8 +1,13 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { DynamicLocaleId } from '../utils/dynamic-locale';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from "@angular/material/menu"
+import { MatIconModule } from "@angular/material/icon";
+
+import { HomeComponent } from './home.component';
+import { DynamicLocaleId } from '@app/utils/dynamic-locale';
+
 
 @NgModule({
   declarations: [
@@ -10,7 +15,10 @@ import { DynamicLocaleId } from '../utils/dynamic-locale';
   ],
   imports: [
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [
     { provide: LOCALE_ID, useClass: DynamicLocaleId, deps: [TranslateService] },
