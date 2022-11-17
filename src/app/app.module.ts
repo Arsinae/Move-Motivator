@@ -15,8 +15,13 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
-import { HomeModule } from './home/home.module';
-import { LoginModule } from './login/login.module';
+import { HomeModule } from './pages/home/home.module';
+import { LoginModule } from './pages/login/login.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -26,8 +31,16 @@ import { LoginModule } from './login/login.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HomeModule,
-    LoginModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -36,12 +49,9 @@ import { LoginModule } from './login/login.module';
       },
       isolate: false
     }),
-    BrowserAnimationsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage()),
+    HomeModule,
+    LoginModule,
+    ComponentsModule
   ],
   providers: [
     TranslateService,

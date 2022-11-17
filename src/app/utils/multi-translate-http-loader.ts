@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { TranslateLoader } from '@ngx-translate/core';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';

@@ -1,6 +1,5 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +10,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { DynamicLocaleId } from '../utils/dynamic-locale';
+
+import { DynamicLocaleId } from '@app/utils/dynamic-locale';
+import { LoginComponent } from './login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthActionComponent } from './auth-action/auth-action.component';
 

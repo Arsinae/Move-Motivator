@@ -1,5 +1,8 @@
 {
   "HOME": {
     "TITLE": "Welcome"
+  },
+  "MENU": {
+    "lOGOUT": "Logout"
   }
 }
