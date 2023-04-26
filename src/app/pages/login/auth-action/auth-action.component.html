@@ -1,7 +1,7 @@
 <div class="background"></div>
 
-<div class="form-container dark-theme">
-  <form [formGroup]="passwordForm" class="buttons-list" (ngSubmit)="changePassword()">
+<div class="form-container p-4 dark-theme">
+  <form [formGroup]="passwordForm" class="d-flex flex-column gap-2" (ngSubmit)="changePassword()">
     <div class="page-title">{{ 'AUTH_ACTION.CHANGE_PASSWORD' | translate }}</div>
 
     <mat-form-field>

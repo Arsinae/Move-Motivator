@@ -6,36 +6,38 @@
     </div>
   </div>
 
-  <div class="form-container dark-theme">
+  <div class="form-container p-4 dark-theme">
     <ng-container *ngIf="type === 'login'; else signUp">
-      <form class="buttons-list" [formGroup]="loginForm" (ngSubmit)="connect()">
-        <mat-form-field>
+      <form class="d-flex flex-column gap-2" [formGroup]="loginForm" (ngSubmit)="connect()">
+        <mat-form-field class="flex-1">
           <input matInput type="email" formControlName="email" [placeholder]="'COMMON.MAIL' | translate">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="flex-1">
           <input matInput type="password" formControlName="password" [placeholder]="'LOGIN.PASSWORD' | translate" (keyup.enter)="connect()">
         </mat-form-field>
 
-        <mat-checkbox class="example-margin" formControlName="stayConnected">
+        <mat-checkbox class="flex-1" formControlName="stayConnected">
           {{'LOGIN.KEEP_CONNECTION' | translate}}
         </mat-checkbox>
 
-        <div class="right-align">
+        <div class="text-right">
           <a (click)="switchPage('signup')">{{ 'LOGIN.NO_ACCOUNT' | translate }}</a>
         </div>
 
-        <button mat-raised-button type="submit" color="primary" [disabled]="loginForm.invalid">{{ 'LOGIN.LOGIN' | translate }}</button>
+        <button mat-raised-button class="flex-1" type="submit" color="primary" [disabled]="loginForm.invalid">
+          {{ 'LOGIN.LOGIN' | translate }}
+        </button>
 
       </form>
 
-      <div class="buttons-list">
-        <button mat-button color="accent" (click)="forgetPassword()">{{ 'FORGET_PASSWORD.TITLE' | translate }}</button>
+      <div class="d-flex">
+        <button mat-button class="flex-1" color="accent" (click)="forgetPassword()">{{ 'FORGET_PASSWORD.TITLE' | translate }}</button>
       </div>
     </ng-container>
 
     <ng-template #signUp>
-      <form class="buttons-list" [formGroup]="signUpForm" (ngSubmit)="createAccount()">
+      <form class="d-flex flex-column gap-2" [formGroup]="signUpForm" (ngSubmit)="createAccount()">
         <mat-form-field>
           <input matInput type="email" formControlName="email" [placeholder]="'COMMON.MAIL' | translate">
         </mat-form-field>
@@ -59,7 +61,7 @@
           </mat-error>
         </mat-form-field>
 
-        <div class="right-align">
+        <div class="text-right">
           <a (click)="switchPage('login')">{{ 'SIGNUP.HAVE_ACCOUNT' | translate }}</a>
         </div>
 

@@ -24,22 +24,12 @@
 .form-container {
   width: 80%;
   margin: 0 auto;
-  padding: 24px;
   background: rgba(0,0,0,.4);
   color: white;
   border-radius: 12px;
   box-shadow: rgb(0 0 0 / 70%) 0px 0px 4px;
 }
 
-.buttons-list > * {
-  width: 100%;
-  margin: 12px auto;
-}
-
 a {
   cursor: pointer;
-}
-
-.right-align {
-  text-align: right;
 }

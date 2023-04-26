@@ -1,5 +1,8 @@
 @import "~@angular/material/theming";
 @import "./assets/scss/themes.scss";
+@import "./assets/scss/display.scss";
+@import "./assets/scss/spacing.scss";
+@import "./assets/scss/text.scss";
 @include angular-material-theme($material-light-theme);
 
 body {
