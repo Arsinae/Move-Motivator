@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import * as Auth from '@angular/fire/auth';
+import { inject, Injectable } from '@angular/core';
+import { Auth, authState, confirmPasswordReset, createUserWithEmailAndPassword, GoogleAuthProvider, Persistence, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, verifyPasswordResetCode } from '@angular/fire/auth';
 import { User } from '@app/models/user';
 
 @Injectable({
@@ -20,19 +20,25 @@ export class AuthService {
   }
 
   constructor(
-    private auth: Auth.Auth
-  ) { }
+    private auth: Auth
+  ) {
+    this.auth = inject(Auth);
+  }
 
   createAccount(mail: string, password: string) {
-    return Auth.createUserWithEmailAndPassword(this.auth, mail, password)
+    return createUserWithEmailAndPassword(this.auth, mail, password)
   }
 
   authentify(mail: string, password: string) {
-    return Auth.signInWithEmailAndPassword(this.auth, mail, password);
+    return signInWithEmailAndPassword(this.auth, mail, password);
   }
 
   authentifyWithGoogle() {
-    return Auth.signInWithPopup(this.auth, new Auth.GoogleAuthProvider());
+    const provider = new GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    console.log(this.auth, provider);
+    return signInWithPopup(this.auth, provider);
   }
 
   disconnect() {
@@ -40,12 +46,12 @@ export class AuthService {
     return this.auth.signOut();
   }
 
-  setConnectionPersistence(persistence: Auth.Persistence) {
+  setConnectionPersistence(persistence: Persistence) {
     return this.auth.setPersistence(persistence);
   }
 
   isConnected() {
-    return Auth.authState(this.auth);
+    return authState(this.auth as any);
   }
 
   setUser(user: User) {
@@ -57,15 +63,15 @@ export class AuthService {
   }
 
   sendPasswordResetEmail(email: string) {
-    return Auth.sendPasswordResetEmail(this.auth, email);
+    return sendPasswordResetEmail(this.auth, email);
   }
 
   verifyPasswordCode(code: string) {
-    return Auth.verifyPasswordResetCode(this.auth, code);
+    return verifyPasswordResetCode(this.auth, code);
   }
 
   changePassword(code: string, password: string) {
-    return Auth.confirmPasswordReset(this.auth, code, password);
+    return confirmPasswordReset(this.auth, code, password);
   }
 
   getAuthError(errorCode: string): string {
