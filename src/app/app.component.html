@@ -1,5 +1,15 @@
-<ng-container *ngIf="authService.getCurrentUser() !== null">
-    <app-header-bar></app-header-bar>
-</ng-container>
+<div class="view">
+    <ng-container *ngIf="authService.getCurrentUser() !== null">
+        <app-header-bar (sideNavClick)="sidenav.toggle()"></app-header-bar>
+    </ng-container>
 
-<router-outlet></router-outlet>
+    <mat-sidenav-container class="example-sidenav-container">
+        <mat-sidenav #sidenav mode="over" [fixedInViewport]="true" fixedTopGap="62">
+            <app-side-bar></app-side-bar>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

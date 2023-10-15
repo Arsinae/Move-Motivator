@@ -14,13 +14,16 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { getFunctions, provideFunctions } from '@angular/fire/functions';
 
 import { HomeModule } from './pages/home/home.module';
 import { LoginModule } from './pages/login/login.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { ComponentsModule } from './components/components.module';
 
 @NgModule({
@@ -35,12 +38,14 @@ import { ComponentsModule } from './components/components.module';
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
+    MatSidenavModule,
     MatButtonModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
+    provideFunctions(() => getFunctions()),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

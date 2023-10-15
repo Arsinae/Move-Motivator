@@ -7,12 +7,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DynamicLocaleId } from '@app/utils/dynamic-locale';
-
-
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    HeaderBarComponent
+    HeaderBarComponent,
+    SideBarComponent
   ],
   imports: [
     CommonModule,
@@ -20,13 +22,16 @@ import { DynamicLocaleId } from '@app/utils/dynamic-locale';
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
-    MatButtonModule
+    MatListModule,
+    MatButtonModule,
+    MatDialogModule,
   ],
   providers: [
     { provide: LOCALE_ID, useClass: DynamicLocaleId, deps: [TranslateService] },
   ],
   exports: [
-    HeaderBarComponent
+    HeaderBarComponent,
+    SideBarComponent
   ]
 })
 export class ComponentsModule { }

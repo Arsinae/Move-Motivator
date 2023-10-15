@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/services/auth/auth.service';
 
@@ -8,6 +8,8 @@ import { AuthService } from '@app/services/auth/auth.service';
   styleUrls: ['./header-bar.component.scss']
 })
 export class HeaderBarComponent implements OnInit {
+
+  @Output() sideNavClick: EventEmitter<null> = new EventEmitter();
 
   constructor(
     private router: Router,

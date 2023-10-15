@@ -3,6 +3,7 @@
     "TITLE": "Bienvenue sur le site"
   },
   "MENU": {
+    "HOME": "Accueil",
     "LOGOUT": "Déconnexion"
   }
 }

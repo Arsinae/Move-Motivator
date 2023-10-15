@@ -3,6 +3,7 @@
     "TITLE": "Welcome"
   },
   "MENU": {
+    "HOME": "Accueil",
     "lOGOUT": "Logout"
   }
 }
