@@ -1,10 +1,10 @@
-<div class="view">
+<div class="d-flex flex-column view">
     <ng-container *ngIf="authService.getCurrentUser() !== null">
         <app-header-bar (sideNavClick)="sidenav.toggle()"></app-header-bar>
     </ng-container>
 
-    <mat-sidenav-container class="example-sidenav-container">
-        <mat-sidenav #sidenav mode="over" [fixedInViewport]="true" fixedTopGap="62">
+    <mat-sidenav-container class="flex-1">
+        <mat-sidenav #sidenav mode="side" [fixedInViewport]="true" fixedTopGap="62">
             <app-side-bar></app-side-bar>
         </mat-sidenav>
 
