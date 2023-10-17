@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivityFormComponent } from '@app/modals/activity-form/activity-form.component';
 
 @Component({
   selector: 'app-side-bar',
@@ -8,9 +9,18 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class SideBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }
 
+  openAddActivityModal(): void {
+    this.dialog.open(ActivityFormComponent, {minWidth: '30%'}).afterClosed().subscribe(res => {
+      if (res) {
+        // TODO: reload user distance data
+      }
+    })
+  }
 }

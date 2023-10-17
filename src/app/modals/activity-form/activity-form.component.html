@@ -1,0 +1,31 @@
+<div class="modal-title pb-2">Ajouter une activité</div>
+<mat-divider></mat-divider>
+
+<div *ngIf="error" class="danger-color text-bold py-2">
+  {{ error }}
+</div>
+
+<div class="modal-content">
+  <form class="d-flex flex-column gap-2 my-2" [formGroup]="activityForm" (ngSubmit)="storeActivity()">
+    <div class="d-flex flex-wrap gap-2">
+      <mat-form-field class="flex-1">
+        <mat-label>Type d'activité</mat-label>
+        <mat-select matInput formControlName="type">
+          <mat-option [value]="ActivityType.WALK">Marche</mat-option>
+          <mat-option [value]="ActivityType.RUN">Course</mat-option>
+          <mat-option [value]="ActivityType.BIKE">Cyclisme</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="flex-1">
+        <input matInput type="number" formControlName="distance" placeholder="Distance parcourue" [min]="0" class="text-end">
+        <span matSuffix>mètres</span>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button class="flex-1" type="submit" color="primary" [disabled]="activityForm.invalid">
+      Valider
+    </button>
+
+  </form>
+</div>

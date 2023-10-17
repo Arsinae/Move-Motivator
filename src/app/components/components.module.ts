@@ -10,6 +10,7 @@ import { DynamicLocaleId } from '@app/utils/dynamic-locale';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ModalsModule } from '../modals/modals.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatListModule,
     MatButtonModule,
     MatDialogModule,
+    ModalsModule
   ],
   providers: [
     { provide: LOCALE_ID, useClass: DynamicLocaleId, deps: [TranslateService] },

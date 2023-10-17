@@ -1,19 +1,16 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import {onCall} from "firebase-functions/v2/https";
+import {onDocumentCreated} from 'firebase-functions/v2/firestore';
+import * as admin from 'firebase-admin';
+import { aggregateDistanceInfos, storeDistance } from "./distance/distance";
 
-import {onRequest} from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
+admin.initializeApp();
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+exports.addDistance = onCall((request) => {
+  storeDistance(request, admin.firestore())
+});
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+exports.distanceAggregator = onDocumentCreated(`user/{userUid}/distances/{distanceId}`, async (event) => {
+  const data = event.data?.data();
+  const userUid = event.params.userUid;
+  aggregateDistanceInfos(userUid, data, admin.firestore());
+});

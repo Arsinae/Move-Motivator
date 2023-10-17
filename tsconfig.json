@@ -6,7 +6,10 @@
     "paths": {
       "@app/*": ["src/app/*"],
       "@server-data/*": ["src/app/services/server-data/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@models/*": ["src/app/models/*"],
+      "@modals/*": ["src/app/modals/*"],
+      "@services": ["src/app/services/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
