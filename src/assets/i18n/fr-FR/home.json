@@ -3,6 +3,7 @@
     "TITLE": "Bienvenue sur le site"
   },
   "MENU": {
+    "ADD_ACTIVITY": "Ajouter une activité",
     "HOME": "Accueil",
     "LOGOUT": "Déconnexion"
   }

@@ -34,6 +34,10 @@ body {
   color: white;
 }
 
+.danger-color {
+  color: mat-color($material-dark-warn) !important;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 

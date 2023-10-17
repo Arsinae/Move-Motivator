@@ -14,7 +14,11 @@ export class UserService {
 
   createUser(uuid: string, user: User) {
     const docRef = doc(this.firestore, `user/${uuid}`);
-    return setDoc(docRef, {email: user.email, username: user.username, lastLogin: new Date()});
+    return setDoc(docRef, {email: user.email, username: user.username, createdAt: new Date(), lastLogin: new Date()});
+  }
+
+  async setUserBaseData(uuid: string) {
+    await setDoc(doc(this.firestore, `user/${uuid}/infos/distance`), {totalDistance: 0, maxDistance: 0, dailyAverage: 0});
   }
 
   setLastLogin(uuid: string) {

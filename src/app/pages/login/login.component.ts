@@ -123,6 +123,7 @@ export class LoginComponent implements OnInit {
 
   storeUserInfo(user: User, uuid: string) {
     this.userService.createUser(uuid, user).then(resUser => {
+      this.userService.setUserBaseData(uuid);
       this.snackbar.open(this.translate.instant('SIGNUP.CREATED'), '', {panelClass: 'primary-snackbar', duration: 4000});
       this.authService.setUser(user);
       this.router.navigate(['/home']);
