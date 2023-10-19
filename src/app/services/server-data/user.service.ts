@@ -7,7 +7,6 @@ import { User } from '@app/models/user';
 })
 export class UserService {
 
-
   constructor(
     private firestore: Firestore
   ) { }

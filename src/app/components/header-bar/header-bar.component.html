@@ -5,8 +5,9 @@
 
   <div>Move Motivator</div>
 
-  <button mat-icon-button>
-      <mat-icon [matMenuTriggerFor]="userMenu">person</mat-icon>
+  <button mat-button [matMenuTriggerFor]="userMenu">
+      <span>{{ user?.username }}</span>
+      <mat-icon class="pl-1">person</mat-icon>
   </button>
   
 </mat-toolbar>

@@ -108,11 +108,14 @@ export class LoginComponent implements OnInit {
 
   googleAuth() {
     this.authService.authentifyWithGoogle().then(credential => {
-      console.log(credential);
       if (credential.operationType === 'signIn') {
         const newUser: User = User.setNewUserFromAuthProvider(credential);
         newUser.uuid = credential.user.uid;
-        this.storeUserInfo(newUser, credential.user.uid);
+        if (credential.user.metadata.creationTime === credential.user.metadata.lastSignInTime) {
+          this.storeUserInfo(newUser, credential.user.uid);
+        } else {
+          this.getConnectedUser(credential.user.uid);
+        }
       } else {
         this.snackbar.open(this.translate.instant(`SIGNUP.UNKNOWN_METHOD`), '', {panelClass: 'danger-snackbar', duration: 4000});
       }

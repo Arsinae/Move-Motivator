@@ -37,7 +37,6 @@ export class AuthService {
     const provider = new GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
-    console.log(this.auth, provider);
     return signInWithPopup(this.auth, provider);
   }
 
