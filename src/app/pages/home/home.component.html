@@ -1,1 +1,13 @@
-<div>{{ "HOME.TITLE" | translate }}</div>
+<div class="p-3">
+  <div class="h2 text-primary mb-3">Statistiques Générales</div>
+
+  <ng-container *ngIf="userStats">
+    <div class="d-flex align-center p-4">
+      <mat-icon class="stat-icon text-primary">menu</mat-icon>
+      <div class="stat-lines ml-3">
+        <div class="h6 text-primary mb-1">Distance Totale</div>
+        <div class="h3 text-primary">{{ userStats.totalDistance / 1000 | number:'1.0-2' }} km</div>
+      </div>
+    </div>
+  </ng-container>
+</div>

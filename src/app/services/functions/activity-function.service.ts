@@ -14,7 +14,7 @@ export class ActivityFunctionService {
   constructor() {
     this.functions = inject(Functions);
     if (environment.production === false) {
-      connectFunctionsEmulator(this.functions, "127.0.0.1", 5001);
+      // connectFunctionsEmulator(this.functions, "127.0.0.1", 5001);
     }
     this.addDistance = httpsCallable(this.functions, 'addDistance');
   }

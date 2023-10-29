@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy:hosting": "firebase deploy --only hosting",
-    "deploy:functions": "firebase deploy --only functions"  
+    "deploy:functions": "firebase deploy --only functions"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +26,7 @@
     "@angular/router": "^14.2.0",
     "@ngx-translate/core": "^14.0.0",
     "@types/angularfire": "^0.8.36",
+    "date-fns": "^2.30.0",
     "firebase": "^10.4.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
