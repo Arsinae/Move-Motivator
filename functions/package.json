@@ -4,10 +4,10 @@
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "serve": "npm run build && firebase emulators:start --only functions,firestore",
+    "serve": "npm run build:watch | firebase emulators:start --only functions,firestore",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
+    "deploy": "npm run build && firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
   "engines": {
@@ -15,6 +15,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "date-fns": "^2.30.0",
     "firebase-admin": "^11.8.0",
     "firebase-functions": "^4.3.1"
   },
