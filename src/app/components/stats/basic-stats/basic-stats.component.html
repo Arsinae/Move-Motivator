@@ -1,0 +1,38 @@
+<div class="p-3">
+  <div class="h2  mb-3 pl-6">Statistiques Générales</div>
+
+  <div *ngIf="userStats" class="d-flex flex-wrap p-3 gap-3 justify-evenly">
+    <div class="stat-block">
+      <mat-icon class="stat-icon ">place</mat-icon>
+      <div class="stat-lines ml-3">
+        <div class="h6 mb-1">Distance Totale</div>
+        <div class="h3">{{ userStats.totalDistance / 1000 | number:'1.0-2' }} km</div>
+        <span class="small-text">Aujourd'hui: {{todayDistance / 1000 | number:'1.0-2' }}km</span>
+      </div>
+    </div>
+
+    <div class="stat-block">
+      <mat-icon class="stat-icon ">schedule</mat-icon>
+      <div class="stat-lines ml-3">
+        <div class="h6 mb-1">Inscription</div>
+        <div class="h3">{{ SignInDurationText }}</div>
+      </div>
+    </div>
+
+    <div class="stat-block">
+      <mat-icon class="stat-icon ">speed</mat-icon>
+      <div class="stat-lines ml-3">
+        <div class="h6 mb-1">Distance Moyenne</div>
+        <div class="h3">{{ userStats.dailyAverage / 1000 | number:'1.0-2' }} km par jour</div>
+      </div>
+    </div>
+
+    <div class="stat-block">
+      <mat-icon class="stat-icon ">emoji_events</mat-icon>
+      <div class="stat-lines ml-3">
+        <div class="h6 mb-1">Meilleur Performance</div>
+        <div class="h3">{{ userStats.maxDistance / 1000 | number:'1.0-2' }} km</div>
+      </div>
+    </div>
+  </div>
+</div>
