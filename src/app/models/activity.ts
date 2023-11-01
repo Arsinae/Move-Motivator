@@ -6,5 +6,7 @@ export enum ActivityType {
 
 export interface Activity {
   distance: number;
-  type: ActivityType
+  type: ActivityType;
+  id?: string;
+  creationDate?: Date;
 }

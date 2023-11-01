@@ -27,7 +27,6 @@ export class User {
   }
 
   static formatUser(uuid: string, data: User) {
-    console.log(data, differenceInDays(new Date(), (<any>data.createdAt).toDate()));
     const user: User = {
       uuid: uuid, email: data.email, username: data.username, lastLogin: (<any>data.lastLogin).toDate(), createdAt: (<any>data.createdAt).toDate()
     }
