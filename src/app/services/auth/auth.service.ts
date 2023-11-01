@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Auth, authState, confirmPasswordReset, createUserWithEmailAndPassword, GoogleAuthProvider, Persistence, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, verifyPasswordResetCode } from '@angular/fire/auth';
 import { User } from '@app/models/user';
+import { BehaviorSubject, filter, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { User } from '@app/models/user';
 export class AuthService {
 
   private user: User | null = null;
+  private currentUser: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
   private authErrors: any = {
     "auth/user-not-found": "EMAIL_NOT_FOUND",
     "auth/wrong-password": 'INVALID_PASSWORD',
@@ -42,6 +44,7 @@ export class AuthService {
 
   disconnect() {
     this.user = null;
+    this.currentUser.next(null);
     return this.auth.signOut();
   }
 
@@ -55,10 +58,15 @@ export class AuthService {
 
   setUser(user: User) {
     this.user = user;
+    this.currentUser.next(user);
   }
 
-  getCurrentUser() {
+  getCurrentUser(): User | null {
     return this.user;
+  }
+
+  getCurrentUserObservable(): Observable<User | null> {
+    return this.currentUser.asObservable().pipe(filter(res => res !== null));
   }
 
   sendPasswordResetEmail(email: string) {

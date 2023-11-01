@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '@app/services/auth/auth.service';
 import { LangList } from '@app/utils/lang-list';
 import { UserService } from '@app/services/server-data/user.service';
+import { StatsService } from './services/server-data/stats.service';
 
 @Component({
   selector: 'app-root',

@@ -1,11 +1,13 @@
 import { UserCredential } from "@angular/fire/auth";
 import { FormGroup } from "@angular/forms";
+import { differenceInDays } from "date-fns";
 
 export class User {
   public uuid: string | undefined = '';
   public email: string = '';
   public username: string = '';
   public lastLogin: Date = new Date();
+  public createdAt?: Date = new Date();
 
   static setNewUser(formGroup: FormGroup) {
     const user: User = {
@@ -26,7 +28,7 @@ export class User {
 
   static formatUser(uuid: string, data: User) {
     const user: User = {
-      uuid: uuid, email: data.email, username: data.username, lastLogin: new Date(data.lastLogin)
+      uuid: uuid, email: data.email, username: data.username, lastLogin: (<any>data.lastLogin).toDate(), createdAt: (<any>data.createdAt).toDate()
     }
     return user;
   }

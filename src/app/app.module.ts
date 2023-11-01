@@ -1,5 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -23,8 +24,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
 import { ComponentsModule } from './components/components.module';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
@@ -61,6 +64,7 @@ import { ComponentsModule } from './components/components.module';
   providers: [
     TranslateService,
     { provide: LOCALE_ID, useClass: DynamicLocaleId, deps: [TranslateService] },
+    { provide: LOCALE_ID, useValue: 'fr-FR'},
   ],
   bootstrap: [AppComponent]
 })
