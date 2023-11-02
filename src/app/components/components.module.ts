@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalsModule } from '../modals/modals.module';
 import { BasicStatsComponent } from './stats/basic-stats/basic-stats.component';
 import { MonthStatComponent } from './stats/month-stat/month-stat.component';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MonthStatComponent } from './stats/month-stat/month-stat.component';
     MatListModule,
     MatButtonModule,
     MatDialogModule,
+    ChartModule,
     ModalsModule
   ],
   providers: [
