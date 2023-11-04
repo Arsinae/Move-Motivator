@@ -7,6 +7,7 @@ import { MatIconModule } from "@angular/material/icon";
 
 import { HomeComponent } from './home.component';
 import { DynamicLocaleId } from '@app/utils/dynamic-locale';
+import { ComponentsModule } from '@app/components/components.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { DynamicLocaleId } from '@app/utils/dynamic-locale';
     TranslateModule,
     MatToolbarModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    ComponentsModule
   ],
   providers: [
     { provide: LOCALE_ID, useClass: DynamicLocaleId, deps: [TranslateService] },

@@ -8,8 +8,8 @@ import { BehaviorSubject, filter, Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private user: User | null = null;
-  private currentUser: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  private user: User = null;
+  private currentUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   private authErrors: any = {
     "auth/user-not-found": "EMAIL_NOT_FOUND",
     "auth/wrong-password": 'INVALID_PASSWORD',
@@ -65,7 +65,7 @@ export class AuthService {
     return this.user;
   }
 
-  getCurrentUserObservable(): Observable<User | null> {
+  getCurrentUserObservable(): Observable<User> {
     return this.currentUser.asObservable().pipe(filter(res => res !== null));
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, doc, getDoc, setDoc, updateDoc, FirestoreDataConverter, QueryDocumentSnapshot } from '@angular/fire/firestore';
 import { User } from '@app/models/user';
 
 @Injectable({
@@ -7,9 +7,19 @@ import { User } from '@app/models/user';
 })
 export class UserService {
 
+  private converter: FirestoreDataConverter<User>;
+
   constructor(
     private firestore: Firestore
-  ) { }
+  ) {
+    this.converter = {
+      toFirestore: (data) => data,
+      fromFirestore: (snap: QueryDocumentSnapshot) => {
+        const data = snap.data();
+        return {...data, uuid: snap.id, lastLogin: (<any>data).lastLogin.toDate(), createdAt: (<any>data).createdAt.toDate()} as User;
+      }
+    };
+  }
 
   createUser(uuid: string, user: User) {
     const docRef = doc(this.firestore, `user/${uuid}`);
@@ -26,14 +36,9 @@ export class UserService {
   }
 
   getUserData(uuid: string) {
-    const docRef = doc(this.firestore, `user/${uuid}`);
+    const docRef = doc(this.firestore, `user/${uuid}`).withConverter(this.converter);
     return getDoc(docRef).then(res => {
-      if (res) {
-        const user: User = User.formatUser(res.id, <User>res.data());
-        return user;
-      } else {
-        return null;
-      }
+      return res ? res.data() : null;
     });
   }
 }

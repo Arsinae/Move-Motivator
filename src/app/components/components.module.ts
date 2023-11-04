@@ -11,11 +11,16 @@ import { SideBarComponent } from './core/side-bar/side-bar.component';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalsModule } from '../modals/modals.module';
+import { BasicStatsComponent } from './stats/basic-stats/basic-stats.component';
+import { MonthStatComponent } from './stats/month-stat/month-stat.component';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
     HeaderBarComponent,
-    SideBarComponent
+    SideBarComponent,
+    BasicStatsComponent,
+    MonthStatComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +31,7 @@ import { ModalsModule } from '../modals/modals.module';
     MatListModule,
     MatButtonModule,
     MatDialogModule,
+    ChartModule,
     ModalsModule
   ],
   providers: [
@@ -33,7 +39,9 @@ import { ModalsModule } from '../modals/modals.module';
   ],
   exports: [
     HeaderBarComponent,
-    SideBarComponent
+    SideBarComponent,
+    BasicStatsComponent,
+    MonthStatComponent
   ]
 })
 export class ComponentsModule { }
