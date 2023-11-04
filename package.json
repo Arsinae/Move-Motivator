@@ -1,6 +1,6 @@
 {
-  "name": "angular-fire-boot",
-  "version": "1.0.1",
+  "name": "move-motivator",
+  "version": "1.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
