@@ -4,7 +4,7 @@ import { DistanceService } from '@app/services/server-data/distance.service';
 import { StatsService } from '@app/services/server-data/stats.service';
 import { Chart } from 'angular-highcharts';
 import { addDays, isSameDay, subDays } from 'date-fns';
-import { SeriesColumnOptions, SeriesOptionsType, XAxisLabelsOptions } from 'highcharts';
+import { SeriesColumnOptions, SeriesOptionsType, TooltipFormatterContextObject, TooltipOptions, XAxisLabelsOptions } from 'highcharts';
 
 @Component({
   selector: 'app-month-stat',
@@ -51,6 +51,9 @@ export class MonthStatComponent implements OnInit {
           text: 'Distance',
           style: {color: 'white'}
         },
+        labels: {
+          format: '{text}km'
+        }
       },
       xAxis: {
         categories: this.xAxisLabels()
@@ -60,7 +63,9 @@ export class MonthStatComponent implements OnInit {
           stacking: 'normal',
         }
       },
-      series: this.setChartsSeries(distances)
+      colors: ['#C2185B', '#00C75A', '#C75A00'],
+      series: this.setChartsSeries(distances),
+      tooltip: this.chartTooltip()
     });
   }
 
@@ -80,10 +85,22 @@ export class MonthStatComponent implements OnInit {
     ];
     for (let date = new Date(this.startDate); date.getTime() < this.endDate.getTime(); date = addDays(date, 1)) {
       const currentDistances = distances.filter(d => isSameDay(d.creationDate, date));
-      series[0].data.push(currentDistances.filter(d => d.type === ActivityType.WALK).reduce((a, b) => a + b.distance, 0));
-      series[1].data.push(currentDistances.filter(d => d.type === ActivityType.RUN).reduce((a, b) => a + b.distance, 0));
-      series[2].data.push(currentDistances.filter(d => d.type === ActivityType.BIKE).reduce((a, b) => a + b.distance, 0));
+      series[0].data.push(currentDistances.filter(d => d.type === ActivityType.WALK).reduce((a, b) => a + b.distance / 1000, 0));
+      series[1].data.push(currentDistances.filter(d => d.type === ActivityType.RUN).reduce((a, b) => a + b.distance / 1000, 0));
+      series[2].data.push(currentDistances.filter(d => d.type === ActivityType.BIKE).reduce((a, b) => a + b.distance / 1000, 0));
     }
     return series;
+  }
+
+  private chartTooltip(): TooltipOptions {
+    return {
+      shared: true,
+      formatter: function ()  {
+        const points = this.points.filter(point => point.percentage !== 0);
+        return points.reduce((s, point) => {
+          return s + `<br/><span style="color:${point.color}">\u25CF</span> ${point.series.name}: ${point.y}km`;
+        }, `<b>${this.points[0].x}: ${this.points[0].total}km</b>`);
+      }
+    }
   }
 }
