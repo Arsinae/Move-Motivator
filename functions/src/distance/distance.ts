@@ -20,3 +20,12 @@ export async function aggregateDistanceInfos(userUid: string, data: any, firesto
   logger.info(`Total: ${total}, Days: ${dayTotal}`);
   doc.ref.update({totalDistance: FieldValue.increment(data?.distance), maxDistance: Math.max(userStatInfo?.maxDistance, data?.distance), dailyAverage: total/dayTotal});
 }
+
+export async function recalculateDailyAverage(userUid: string, firestore: Firestore) {
+  const doc = await firestore.doc(`user/${userUid}/infos/distance`).get();
+  const userStatInfo = doc.data();
+  const userInfo = (await firestore.doc(`user/${userUid}`).get()).data();
+  const dayTotal = Math.max(differenceInDays(new Date(), new Date(userInfo?.createdAt?._seconds * 1000)), 0) + 1;
+  logger.info(`Total: ${userStatInfo?.totalDistance}, Days: ${dayTotal}`);
+  doc.ref.update({dailyAverage: userStatInfo?.totalDistance / dayTotal});
+}
