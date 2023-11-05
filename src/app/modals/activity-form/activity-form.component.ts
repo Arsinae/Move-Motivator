@@ -37,7 +37,7 @@ export class ActivityFormComponent implements OnInit {
       distance: this.activityForm.value.distance,
       type: this.activityForm.value.type
     };
-    this.activityService.addDistance(activity).then(res => {
+    this.activityService.callAddDistance(activity).then(res => {
       this.snackBar.open('Distance enregistrée', 'OK', {duration: 3000});
       this.dialogRef.close();
     }).catch(err => {
