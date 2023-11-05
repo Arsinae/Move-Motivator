@@ -1,7 +1,7 @@
 import {onCall} from "firebase-functions/v2/https";
 import {onDocumentCreated} from 'firebase-functions/v2/firestore';
 import * as admin from 'firebase-admin';
-import { aggregateDistanceInfos, storeDistance } from "./distance/distance";
+import { aggregateDistanceInfos, storeDistance, recalculateDailyAverage } from "./distance/distance";
 
 admin.initializeApp();
 
@@ -14,3 +14,7 @@ exports.distanceAggregator = onDocumentCreated(`user/{userUid}/distances/{distan
   const userUid = event.params.userUid;
   aggregateDistanceInfos(userUid, data, admin.firestore());
 });
+
+exports.computeDailyAverage = onCall((request) => {
+  recalculateDailyAverage(request.auth?.uid, admin.firestore());
+})

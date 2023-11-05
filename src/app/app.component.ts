@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '@app/services/auth/auth.service';
 import { LangList } from '@app/utils/lang-list';
 import { UserService } from '@app/services/server-data/user.service';
-import { StatsService } from './services/server-data/stats.service';
+import { ActivityFunctionService } from './services/functions/activity-function.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
     private snackbar: MatSnackBar,
     public authService: AuthService,
     private userService: UserService,
+    private functionService: ActivityFunctionService,
     private langListService: LangList
   ) { }
 
@@ -36,6 +37,7 @@ export class AppComponent implements OnInit {
       if (user) {
         this.authService.setUser(user);
         this.userService.setLastLogin(userUid);
+        this.functionService.callComputeDailyAverage();
       } else {
         this.snackbar.open(this.translate.instant(`LOGIN.ERROR`), '', {panelClass: 'danger-snackbar', duration: 4000});
       }
