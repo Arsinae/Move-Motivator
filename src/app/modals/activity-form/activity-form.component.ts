@@ -15,6 +15,7 @@ export class ActivityFormComponent implements OnInit {
   public activityForm: FormGroup;
   public ActivityType = ActivityType;
 
+  public loading: boolean = false;
   public error: string | null = null;
 
   constructor(
@@ -33,6 +34,7 @@ export class ActivityFormComponent implements OnInit {
   }
 
   storeActivity() {
+    this.loading = true;
     const activity: Activity = {
       distance: this.activityForm.value.distance,
       type: this.activityForm.value.type
@@ -40,9 +42,11 @@ export class ActivityFormComponent implements OnInit {
     this.activityService.callAddDistance(activity).then(res => {
       this.snackBar.open('Distance enregistrée', 'OK', {duration: 3000});
       this.dialogRef.close();
+      this.loading = false;
     }).catch(err => {
       console.error(err);
       this.error = 'Erreur durant l\'enregistrement de la distance.';
+      this.loading = false;
     })
   }
 
