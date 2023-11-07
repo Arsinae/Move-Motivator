@@ -14,13 +14,15 @@ import { ModalsModule } from '../modals/modals.module';
 import { BasicStatsComponent } from './stats/basic-stats/basic-stats.component';
 import { MonthStatComponent } from './stats/month-stat/month-stat.component';
 import { ChartModule } from 'angular-highcharts';
+import { GoalBarComponent } from './goals/goal-bar/goal-bar.component';
 
 @NgModule({
   declarations: [
     HeaderBarComponent,
     SideBarComponent,
     BasicStatsComponent,
-    MonthStatComponent
+    MonthStatComponent,
+    GoalBarComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { ChartModule } from 'angular-highcharts';
     HeaderBarComponent,
     SideBarComponent,
     BasicStatsComponent,
-    MonthStatComponent
+    MonthStatComponent,
+    GoalBarComponent
   ]
 })
 export class ComponentsModule { }

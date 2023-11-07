@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDistanceStats } from '@app/models/stats';
 import { AuthService } from '@app/services/auth/auth.service';
 import { DistanceService } from '@app/services/server-data/distance.service';
-import { StatsService } from '@app/services/server-data/stats.service';
+import { UserInfosService } from '@app/services/server-data/userinfos.service';
 import { intervalToDuration } from 'date-fns';
 
 @Component({
@@ -18,7 +18,7 @@ export class BasicStatsComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private statService: StatsService,
+    private userInfosService: UserInfosService,
     private distanceService: DistanceService
   ) { }
 
@@ -27,7 +27,7 @@ export class BasicStatsComponent implements OnInit {
   }
   
   async getUserStats() {
-    this.userStats = await this.statService.getUserDistanceStat();
+    this.userStats = await this.userInfosService.getUserDistanceStat();
     this.signInDuration = intervalToDuration({
       start: this.authService.getCurrentUser()?.createdAt || new Date(),
       end: new Date()
