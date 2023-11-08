@@ -1,10 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { UserDistanceStats } from '@app/models/stats';
+import { AfterViewInit, Component } from '@angular/core';
 import { User } from '@app/models/user';
 import { AuthService } from '@app/services/auth/auth.service';
-import { DistanceService } from '@app/services/server-data/distance.service';
-import { StatsService } from '@app/services/server-data/stats.service';
-import { Duration, intervalToDuration } from 'date-fns';
 
 @Component({
   selector: 'app-home',

@@ -1,0 +1,19 @@
+<div class="p-3">
+  <div class="h2 mb-3 pl-6">Objectif Mensuel</div>
+
+  <div class="pl-6">
+    <div class="progress-bar" [matTooltip]="getDistanceTooltip()">
+      <div class="progress" [style.width.%]="progressPercent">{{ progressPercent }}%</div>
+    </div>
+
+    <div class="py-1 pl-2 d-flex align-end">
+      <ng-container *ngIf="monthlyGoal > currentDistance; else completed">
+        Objectif: {{ (currentDistance / 1000) | number:'1.0-2' }}km / {{ (monthlyGoal / 1000) | number:'1.0-2' }} km
+      </ng-container>
+      <ng-template #completed>
+        <mat-icon class="mr-1">check</mat-icon>
+        Objectif atteint
+      </ng-template>
+    </div>
+  </div>
+</div>

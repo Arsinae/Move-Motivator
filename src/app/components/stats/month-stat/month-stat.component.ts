@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Activity, ActivityType } from '@app/models/activity';
 import { DistanceService } from '@app/services/server-data/distance.service';
-import { StatsService } from '@app/services/server-data/stats.service';
 import { Chart } from 'angular-highcharts';
 import { addDays, isSameDay, subDays } from 'date-fns';
-import { SeriesColumnOptions, SeriesOptionsType, TooltipFormatterContextObject, TooltipOptions, XAxisLabelsOptions } from 'highcharts';
+import { SeriesColumnOptions, SeriesOptionsType, TooltipOptions } from 'highcharts';
 
 @Component({
   selector: 'app-month-stat',

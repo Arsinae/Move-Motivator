@@ -1,5 +1,5 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { HeaderBarComponent } from './core/header-bar/header-bar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,13 +14,16 @@ import { ModalsModule } from '../modals/modals.module';
 import { BasicStatsComponent } from './stats/basic-stats/basic-stats.component';
 import { MonthStatComponent } from './stats/month-stat/month-stat.component';
 import { ChartModule } from 'angular-highcharts';
+import { GoalBarComponent } from './goals/goal-bar/goal-bar.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
     HeaderBarComponent,
     SideBarComponent,
     BasicStatsComponent,
-    MonthStatComponent
+    MonthStatComponent,
+    GoalBarComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import { ChartModule } from 'angular-highcharts';
     MatMenuModule,
     MatIconModule,
     MatListModule,
+    MatTooltipModule,
     MatButtonModule,
     MatDialogModule,
     ChartModule,
@@ -36,12 +40,14 @@ import { ChartModule } from 'angular-highcharts';
   ],
   providers: [
     { provide: LOCALE_ID, useClass: DynamicLocaleId, deps: [TranslateService] },
+    DecimalPipe
   ],
   exports: [
     HeaderBarComponent,
     SideBarComponent,
     BasicStatsComponent,
-    MonthStatComponent
+    MonthStatComponent,
+    GoalBarComponent
   ]
 })
 export class ComponentsModule { }

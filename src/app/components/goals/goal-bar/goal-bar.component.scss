@@ -1,0 +1,20 @@
+@import "src/assets/scss/themes.scss";
+
+.progress-bar {
+  width: 100%;
+  height: 35px;
+  background-color: rgba(0, 0, 0, .5);
+  padding: 4px 6px;
+  border: 1px solid darkgray;
+  box-sizing: border-box;
+  border-radius: 17px / 50%;
+}
+
+.progress {
+  height: 25px;
+  min-width: 15px;
+  background-color: mat-color($material-dark-primary);
+  border-radius: 11px / 50%;
+  line-height: 25px;
+  text-align: center;
+}
