@@ -38,8 +38,20 @@ body {
   color: white;
 }
 
+.primary-color {
+  color: mat-color($material-dark-primary) !important;
+}
+
 .danger-color {
   color: mat-color($material-dark-warn) !important;
+}
+
+.primary-background {
+  background-color: mat-color($material-dark-primary) !important;
+}
+
+.danger-background {
+  background-color: mat-color($material-dark-warn) !important;
 }
 
 input:-webkit-autofill,
