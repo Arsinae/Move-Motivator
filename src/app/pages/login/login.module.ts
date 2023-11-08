@@ -16,6 +16,7 @@ import { DynamicLocaleId } from '@app/utils/dynamic-locale';
 import { LoginComponent } from './login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthActionComponent } from './auth-action/auth-action.component';
+import { LoginRoutingModule } from './login-routing.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AuthActionComponent } from './auth-action/auth-action.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    LoginRoutingModule,
     TranslateModule,
     MatInputModule,
     MatButtonModule,
@@ -40,8 +42,7 @@ import { AuthActionComponent } from './auth-action/auth-action.component';
     TranslateModule
   ],
   exports: [
-    LoginComponent,
-    AuthActionComponent
+    LoginRoutingModule,
   ],
   entryComponents: [
     ForgotPasswordComponent

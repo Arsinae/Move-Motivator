@@ -3,7 +3,7 @@
 
   <div class="pl-6">
     <div class="progress-bar" [matTooltip]="getDistanceTooltip()">
-      <div class="progress" [style.width.%]="progressPercent">{{ progressPercent }}%</div>
+      <div class="progress primary-background" [style.width.%]="progressPercent">{{ progressPercent | number:'1.0-0' }}%</div>
     </div>
 
     <div class="py-1 pl-2 d-flex align-end">
