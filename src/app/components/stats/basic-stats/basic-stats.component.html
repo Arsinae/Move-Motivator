@@ -6,8 +6,8 @@
       <mat-icon class="stat-icon ">place</mat-icon>
       <div class="stat-lines ml-3">
         <div class="h6 mb-1">Distance Totale</div>
-        <div class="h3">{{ userStats.totalDistance / 1000 | number:'1.0-2' }} km</div>
-        <span class="small-text">Aujourd'hui: {{todayDistance / 1000 | number:'1.0-2' }}km</span>
+        <div class="h3">{{ userStats.totalDistance | kilometer }} km</div>
+        <span class="small-text">Aujourd'hui: {{todayDistance | kilometer }}km</span>
       </div>
     </div>
 
@@ -23,7 +23,7 @@
       <mat-icon class="stat-icon ">speed</mat-icon>
       <div class="stat-lines ml-3">
         <div class="h6 mb-1">Distance Moyenne</div>
-        <div class="h3">{{ userStats.dailyAverage / 1000 | number:'1.0-2' }} km par jour</div>
+        <div class="h3">{{ userStats.dailyAverage | kilometer }} km par jour</div>
       </div>
     </div>
 
@@ -31,7 +31,7 @@
       <mat-icon class="stat-icon ">emoji_events</mat-icon>
       <div class="stat-lines ml-3">
         <div class="h6 mb-1">Meilleur Performance</div>
-        <div class="h3">{{ userStats.maxDistance / 1000 | number:'1.0-2' }} km</div>
+        <div class="h3">{{ userStats.maxDistance | kilometer }} km</div>
       </div>
     </div>
   </div>

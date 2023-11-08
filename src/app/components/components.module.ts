@@ -16,6 +16,8 @@ import { MonthStatComponent } from './stats/month-stat/month-stat.component';
 import { ChartModule } from 'angular-highcharts';
 import { GoalBarComponent } from './goals/goal-bar/goal-bar.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { PipesModule } from '@app/pipes/pipes.module';
+import { KilometerPipe } from '@app/pipes/kilometer.pipe';
 
 @NgModule({
   declarations: [
@@ -36,11 +38,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     MatDialogModule,
     ChartModule,
-    ModalsModule
+    ModalsModule,
+    PipesModule
   ],
   providers: [
     { provide: LOCALE_ID, useClass: DynamicLocaleId, deps: [TranslateService] },
-    DecimalPipe
+    DecimalPipe,
+    KilometerPipe
   ],
   exports: [
     HeaderBarComponent,

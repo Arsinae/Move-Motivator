@@ -1,5 +1,6 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { KilometerPipe } from '@app/pipes/kilometer.pipe';
 import { DistanceService } from '@app/services/server-data/distance.service';
 import { UserInfosService } from '@app/services/server-data/userinfos.service';
 import { getDaysInMonth } from 'date-fns';
@@ -19,7 +20,7 @@ export class GoalBarComponent implements OnInit {
   constructor(
     private distanceService: DistanceService,
     private userInfoService: UserInfosService,
-    private decimalPipe: DecimalPipe
+    private kilometerPipe: KilometerPipe
   ) { }
 
   ngOnInit(): void {
@@ -49,8 +50,8 @@ export class GoalBarComponent implements OnInit {
 
   public getDistanceTooltip(): string {
     if (this.monthlyGoal > this.currentDistance) {
-      const dailyDistance = (this.monthlyGoal - this.currentDistance) / this.remainingDays / 1000
-      return `${this.remainingDays} jours restants (${this.decimalPipe.transform(dailyDistance, '1.0-2')}km par jour)`;
+      const dailyDistance = (this.monthlyGoal - this.currentDistance) / this.remainingDays
+      return `${this.remainingDays} jours restants (${this.kilometerPipe.transform(dailyDistance)}km par jour)`;
     } else {
       return 'Objectif atteint';
     }
