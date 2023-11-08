@@ -8,7 +8,7 @@
 
     <div class="py-1 pl-2 d-flex align-end">
       <ng-container *ngIf="monthlyGoal > currentDistance; else completed">
-        Objectif: {{ (currentDistance / 1000) | number:'1.0-2' }}km / {{ (monthlyGoal / 1000) | number:'1.0-2' }} km
+        Objectif: {{ currentDistance | kilometer }}km / {{ monthlyGoal | kilometer }} km
       </ng-container>
       <ng-template #completed>
         <mat-icon class="mr-1">check</mat-icon>
