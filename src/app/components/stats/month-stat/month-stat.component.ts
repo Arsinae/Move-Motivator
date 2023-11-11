@@ -4,6 +4,10 @@ import { DistanceService } from '@app/services/server-data/distance.service';
 import { Chart } from 'angular-highcharts';
 import { addDays, isSameDay, subDays } from 'date-fns';
 import { SeriesColumnOptions, SeriesOptionsType, TooltipOptions } from 'highcharts';
+import { DeviceDetectorService } from 'ngx-device-detector';
+
+const MONTH_DAY_DIFFERENCE: number = 29;
+const WEEK_DAY_DIFFERENCE: number = 6;
 
 @Component({
   selector: 'app-month-stat',
@@ -15,14 +19,17 @@ export class MonthStatComponent implements OnInit {
   public chart: Chart = null;
   public startDate: Date = new Date();
   public endDate: Date = new Date();
+  public differenceDays: number = 29;
 
   constructor(
     private distanceService: DistanceService,
+    private deviceService: DeviceDetectorService
   ) { }
 
   ngOnInit(): void {
+    this.differenceDays = this.deviceService.isDesktop() ? MONTH_DAY_DIFFERENCE : WEEK_DAY_DIFFERENCE;
     this.startDate.setHours(0, 0, 0, 0);
-    this.startDate = subDays(this.startDate, 29);
+    this.startDate = subDays(this.startDate, this.differenceDays);
     this.getStatsInfo();
   }
 
@@ -30,6 +37,10 @@ export class MonthStatComponent implements OnInit {
     this.distanceService.getDistancesBetweenDates(this.startDate, this.endDate).subscribe(distances => {
       this.chart = this.initChart(distances);
     })
+  }
+
+  public get statTitle(): string {
+    return this.differenceDays === MONTH_DAY_DIFFERENCE ? 'Statistiques Mensuelles' : 'Statistiques Hebdomadaires';
   }
 
   private initChart(distances: Activity[]): Chart {
