@@ -18,6 +18,7 @@ import { GoalBarComponent } from './goals/goal-bar/goal-bar.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PipesModule } from '@app/pipes/pipes.module';
 import { KilometerPipe } from '@app/pipes/kilometer.pipe';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { KilometerPipe } from '@app/pipes/kilometer.pipe';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     TranslateModule,
     MatToolbarModule,
     MatMenuModule,
