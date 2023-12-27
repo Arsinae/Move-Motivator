@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ComponentsModule } from './components/components.module';
 import localeFr from '@angular/common/locales/fr';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 registerLocaleData(localeFr);
 
@@ -57,6 +58,7 @@ registerLocaleData(localeFr);
       },
       isolate: false
     }),
+    LeafletModule,
     HomeModule,
     LoginModule,
     ComponentsModule
