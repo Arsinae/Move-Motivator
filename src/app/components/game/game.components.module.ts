@@ -4,12 +4,14 @@ import { MapComponent } from './map/map.component';
 import { PipesModule } from '@app/pipes/pipes.module';
 import { KilometerPipe } from '@app/pipes/kilometer.pipe';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 
 
 
 @NgModule({
   declarations: [
     MapComponent,
+    MarkerPopupComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     KilometerPipe
   ],
   exports: [
-    MapComponent
+    MapComponent,
   ]
 })
 export class GameComponentsModule { }
