@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule), canActivate: [AuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
   { path: 'stats', loadChildren: () => import('./pages/stats/stats.module').then(m => m.StatsModule), canActivate: [AuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },  
   { path: 'goals', loadChildren: () => import('./pages/goal/goal.module').then(m => m.GoalModule), canActivate: [AuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },  
+  { path: 'game', loadChildren: () => import('./pages/game/game.module').then(m => m.GameModule), canActivate: [AuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },  
   { path: '',   redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 ];
