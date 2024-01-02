@@ -1,6 +1,8 @@
 <div>
   <div [style.height.px]="500"
     leaflet 
-    [leafletOptions]="options">
+    [leafletOptions]="options"
+    (leafletMapReady)="onMapReady($event)"
+  >
   </div>
 </div>
