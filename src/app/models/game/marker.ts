@@ -5,7 +5,17 @@ export const MarkerIcon = {
     iconSize: [25, 41],
     iconAnchor: [10, 41],
     popupAnchor: [2, -40],
-    iconUrl: "https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon.png",
-    shadowUrl: "https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png"
+    iconUrl: "assets/img/marker/marker-icon.png",
+    shadowUrl: "assets/img/marker/marker-shadow.png"
+  })
+};
+
+export const CurrentMarkerIcon = {
+  icon: icon({
+    iconSize: [25, 41],
+    iconAnchor: [10, 41],
+    popupAnchor: [2, -40],
+    iconUrl: "assets/img/marker/current-marker-icon.png",
+    shadowUrl: "assets/img/marker/marker-shadow.png"
   })
 };

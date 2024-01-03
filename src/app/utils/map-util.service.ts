@@ -1,7 +1,6 @@
-import { createComponent, Injectable, Injector, ViewContainerRef } from '@angular/core';
+import { Injectable, Injector, ViewContainerRef } from '@angular/core';
 import { MarkerPopupComponent } from '@app/components/game/marker-popup/marker-popup.component';
-import { GoalBarComponent } from '@app/components/goals/goal-bar/goal-bar.component';
-import { MarkerIcon } from '@app/models/game/marker';
+import { CurrentMarkerIcon, MarkerIcon } from '@app/models/game/marker';
 import { Place } from '@app/models/game/places';
 import { latLng, LatLng, marker, tileLayer } from 'leaflet';
 
@@ -26,8 +25,8 @@ export class MapUtilService {
     };
   }
   
-  public prepareMarker(point: Place) {
-    const newMarker = marker(latLng(point.pos.latitude, point.pos.longitude), MarkerIcon);
+  public prepareMarker(point: Place, isCurrent: boolean) {
+    const newMarker = marker(latLng(point.pos.latitude, point.pos.longitude), isCurrent ? CurrentMarkerIcon : MarkerIcon);
     newMarker.bindPopup(this.createTooltip(point), {closeButton: false, className: 'place-popup'});
     return newMarker;
   }

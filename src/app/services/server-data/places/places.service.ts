@@ -9,19 +9,11 @@ import { map, Observable } from 'rxjs';
 export class PlacesService {
 
   private collectionRef: CollectionReference<DocumentData>;
-  public converter: FirestoreDataConverter<Place>;
 
   constructor(
     private firestore: Firestore,
   ) {
     this.collectionRef = collection(this.firestore, 'places');
-    this.converter = {
-      toFirestore: (data) => data,
-      fromFirestore: (snap: QueryDocumentSnapshot) => {
-        const data = snap.data();
-        return {...data } as Place;
-      }
-    };
   }
 
   getPlaces(): Observable<Place[]> {
