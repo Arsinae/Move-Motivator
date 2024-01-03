@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { UserGoal } from '@app/models/goals';
 import { UserDistanceStats } from '@app/models/stats';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'

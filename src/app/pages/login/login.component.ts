@@ -9,7 +9,7 @@ import { browserSessionPersistence, inMemoryPersistence } from '@angular/fire/au
 
 import { User } from '@app/models/user';
 import { AuthService } from '@app/services/auth/auth.service';
-import { UserService } from '@server-data/user.service';
+import { UserService } from '@server-data/user/user.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @Component({
@@ -119,13 +119,13 @@ export class LoginComponent implements OnInit {
       } else {
         this.snackbar.open(this.translate.instant(`SIGNUP.UNKNOWN_METHOD`), '', {panelClass: 'danger-snackbar', duration: 4000});
       }
-    }).catch(err => {
+    }).catch(_err => {
       this.snackbar.open(this.translate.instant(`LOGIN.ERROR`), '', {panelClass: 'danger-snackbar', duration: 4000});
     })
   }
 
   storeUserInfo(user: User, uuid: string) {
-    this.userService.createUser(uuid, user).then(resUser => {
+    this.userService.createUser(uuid, user).then(_resUser => {
       this.userService.setUserBaseData(uuid);
       this.snackbar.open(this.translate.instant('SIGNUP.CREATED'), '', {panelClass: 'primary-snackbar', duration: 4000});
       this.authService.setUser(user);

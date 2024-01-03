@@ -1,8 +1,8 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { KilometerPipe } from '@app/pipes/kilometer.pipe';
-import { DistanceService } from '@app/services/server-data/distance.service';
-import { UserInfosService } from '@app/services/server-data/userinfos.service';
+import { DistanceService } from '@app/services/server-data/distances/distance.service';
+import { UserInfosService } from '@app/services/server-data/user/userinfos.service';
 import { getDaysInMonth } from 'date-fns';
 
 @Component({

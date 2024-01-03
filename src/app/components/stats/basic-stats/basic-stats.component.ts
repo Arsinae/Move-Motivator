@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDistanceStats } from '@app/models/stats';
 import { AuthService } from '@app/services/auth/auth.service';
-import { DistanceService } from '@app/services/server-data/distance.service';
-import { UserInfosService } from '@app/services/server-data/userinfos.service';
+import { DistanceService } from '@app/services/server-data/distances/distance.service';
+import { UserInfosService } from '@app/services/server-data/user/userinfos.service';
 import { intervalToDuration } from 'date-fns';
 
 @Component({
