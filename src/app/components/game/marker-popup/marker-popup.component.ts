@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Place } from '@app/models/game/places';
+import { KilometerPipe } from '@app/pipes/kilometer.pipe';
+import { MapUtilService } from '@app/utils/map-util.service';
 
 @Component({
   selector: 'app-marker-popup',
@@ -7,12 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarkerPopupComponent implements OnInit {
 
-  public title: string = 'Test';
-  public imgSrc: string = null;
+  @Input() public point: Place = null;
+  @Input() public currentPlace: Place = null;
 
-  constructor() { }
+  public isCurrentPlace: boolean = false;
+  public distance: number = 0;
+
+  constructor(
+    private kilometerPipe: KilometerPipe,
+    private mapUtilsService: MapUtilService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  public computeData() {
+    this.isCurrentPlace = this.point.id === this.currentPlace.id;
+    this.distance = this.mapUtilsService.calculatePointDistance(this.currentPlace.pos, this.point.pos);
+  }
+
+  public get DistanceText(): string {
+    return `Aller (${this.kilometerPipe.transform(this.distance)}km)`
+  }
 }

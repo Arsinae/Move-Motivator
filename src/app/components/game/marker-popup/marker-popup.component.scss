@@ -4,3 +4,13 @@
   height: 100px;
   object-fit: cover;
 }
+
+.popup-button {
+  font-size: 14px;
+  background-color: green;
+  cursor: pointer;
+
+  &.is-current {
+    background-color: orange;
+  }
+}
