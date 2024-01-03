@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { MapComponent } from './map/map.component';
 import { PipesModule } from '@app/pipes/pipes.module';
 import { KilometerPipe } from '@app/pipes/kilometer.pipe';
@@ -19,6 +19,7 @@ import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
     PipesModule
   ],
   providers: [
+    DecimalPipe,
     KilometerPipe
   ],
   exports: [

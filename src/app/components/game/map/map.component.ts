@@ -18,6 +18,8 @@ export class MapComponent implements OnInit, OnChanges {
   public options: MapOptions;
   public layers: Layer[] = [];
 
+  public currentPlace: Place = null;
+
   constructor(
     private viewContainer: ViewContainerRef,
     private mapUtil: MapUtilService
@@ -31,8 +33,13 @@ export class MapComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
       if (changes['points'] !== undefined && this.map !== undefined) {
+        this.setCurrentPlace();
         this.setPlaceMarkers();
       }
+  }
+
+  public setCurrentPlace(): void {
+    this.currentPlace = this.points.find(point => point.id === this.gameState.currentPlace);
   }
 
   public setMapOption(): void {
@@ -50,8 +57,7 @@ export class MapComponent implements OnInit, OnChanges {
       this.layers.slice(0, 1);
     });
     this.points.forEach(point => {
-      console.log(point.id, this.gameState, point.id === this.gameState?.currentPlace);
-      const newMarker = this.mapUtil.prepareMarker(point, point.id === this.gameState?.currentPlace);
+      const newMarker = this.mapUtil.prepareMarker(point, this.currentPlace);
       this.layers.push(newMarker);
       newMarker.addTo(this.map);
     });

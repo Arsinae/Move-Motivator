@@ -1,3 +1,10 @@
-<img *ngIf="imgSrc" class="popup-img" [src]="imgSrc">
+<ng-container>
+  <img *ngIf="point.imgSrc" class="popup-img" [src]="point.imgSrc">
 
-<div class="h6 text-bold text-center pt-1 pb-2">{{title}}</div>
+  <div class="h6 text-bold text-center py-1">{{ point.name }}</div>
+
+  <div class="popup-button text-bold text-center py-1" [class.is-current]="isCurrentPlace">
+    {{ isCurrentPlace ? 'Explorer' : DistanceText }}
+  </div>
+</ng-container>
+
