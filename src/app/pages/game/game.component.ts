@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Place } from '@app/models/game/places';
+import { PlacesService } from '@app/services/server-data/places/places.service';
 
 @Component({
   selector: 'app-game',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  constructor() { }
+  public points: Place[] = [];
+
+  constructor(
+    private placeService: PlacesService
+  ) { }
 
   ngOnInit(): void {
+    this.placeService.getPlaces().subscribe(res => {
+      this.points = res;
+    })
   }
 
 }

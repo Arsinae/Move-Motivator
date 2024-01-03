@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '@app/services/auth/auth.service';
 import { LangList } from '@app/utils/lang-list';
-import { UserService } from '@app/services/server-data/user.service';
+import { UserService } from '@app/services/server-data/user/user.service';
 import { ActivityFunctionService } from './services/functions/activity-function.service';
 
 @Component({
