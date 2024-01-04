@@ -1,0 +1,15 @@
+.step-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 200px;
+  padding: 40px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50px 15px;
+}
+
+.place-name {
+  text-shadow: 0 0 4px black;
+}

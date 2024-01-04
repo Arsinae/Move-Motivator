@@ -5,6 +5,9 @@ import { PipesModule } from '@app/pipes/pipes.module';
 import { KilometerPipe } from '@app/pipes/kilometer.pipe';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
+import { StepNavigatorComponent } from './step-navigator/step-navigator.component';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,9 +15,12 @@ import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
   declarations: [
     MapComponent,
     MarkerPopupComponent,
+    StepNavigatorComponent,
   ],
   imports: [
     CommonModule,
+    RouterModule,
+    MatButtonModule,
     LeafletModule,
     PipesModule
   ],
@@ -24,6 +30,7 @@ import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
   ],
   exports: [
     MapComponent,
+    StepNavigatorComponent
   ]
 })
 export class GameComponentsModule { }
