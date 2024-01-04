@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, query, where, collectionData, FirestoreDataConverter, CollectionReference, DocumentData, QueryDocumentSnapshot } from '@angular/fire/firestore';
-import { Activity } from '@app/models/activity';
+import { Firestore, collection, query, where, collectionData } from '@angular/fire/firestore';
 import { GameUserPoint, GameUserState } from '@app/models/game/game-user-state';
 import { doc, getDoc } from 'firebase/firestore';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 
 @Injectable({

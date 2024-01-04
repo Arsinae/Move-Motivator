@@ -9,6 +9,7 @@ import { HomeComponent } from './home.component';
 import { DynamicLocaleId } from '@app/utils/dynamic-locale';
 import { ComponentsModule } from '@app/components/components.module';
 import { HomeRoutingModule } from './home-routing.module';
+import { GameComponentsModule } from '@app/components/game/game.components.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { HomeRoutingModule } from './home-routing.module';
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
-    ComponentsModule
+    ComponentsModule,
+    GameComponentsModule
   ],
   providers: [
     { provide: LOCALE_ID, useClass: DynamicLocaleId, deps: [TranslateService] },
