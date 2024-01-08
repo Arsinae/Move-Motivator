@@ -28,6 +28,9 @@ export class UserService {
 
   async setUserBaseData(uuid: string) {
     await setDoc(doc(this.firestore, `user/${uuid}/infos/distance`), {totalDistance: 0, maxDistance: 0, dailyAverage: 0});
+    await setDoc(doc(this.firestore, `game-state/${uuid}`), {distance: 0, currentPlace: 'MMJAwlhvdijDq3sRj9Vw'});
+    await setDoc(doc(this.firestore, `game-state/${uuid}/points/MMJAwlhvdijDq3sRj9Vw`), {state: true});
+    await setDoc(doc(this.firestore, `game-state/${uuid}/points/ZuCQKVbUordD2mNK1zL6`), {state: true});
   }
 
   setLastLogin(uuid: string) {
