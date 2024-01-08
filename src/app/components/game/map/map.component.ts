@@ -32,7 +32,7 @@ export class MapComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-      if (changes['points'] !== undefined && this.map !== undefined) {
+      if ((changes['points'] !== undefined || changes['gameState'] !== undefined) && this.map !== undefined) {
         this.setCurrentPlace();
         this.setPlaceMarkers();
       }
