@@ -16,6 +16,8 @@ export class GameComponent implements OnInit, OnDestroy {
   public gameState: GameUserState = null;
   public points: Place[] = [];
 
+  private userSubscription: Subscription = null;
+  private gameStateSubscription: Subscription = null;
   private pointsSubscription: Subscription = null;
 
   constructor(
@@ -25,19 +27,30 @@ export class GameComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.authService.getCurrentUserObservable().subscribe(async res => {
-      this.gameState = (await this.gameStateService.getUserGameState());
-      this.getPoints();
+    this.userSubscription = this.authService.getCurrentUserObservable().subscribe(res => {
+      this.gameStateSubscription = this.gameStateService.listenToUserGameState().subscribe(gameState => {
+        this.gameState = gameState;
+        this.getPoints();
+      })
     });
   }
 
   ngOnDestroy(): void {
-      if (this.pointsSubscription) {
-        this.pointsSubscription.unsubscribe();
-      }
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.gameStateSubscription) {
+      this.gameStateSubscription.unsubscribe();
+    }
+    if (this.pointsSubscription) {
+      this.pointsSubscription.unsubscribe();
+    }
   }
 
   public getPoints(): void {
+    if (this.pointsSubscription) {
+      this.pointsSubscription.unsubscribe();
+    }
     this.pointsSubscription = this.gameStateService.getAvailablePoints().subscribe(availablePoints => {
       this.placeService.getPlaces(availablePoints.map(point => point.id)).subscribe(res => {
         this.points = res;

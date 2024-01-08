@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, query, where, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, query, where, collectionData, limit, documentId } from '@angular/fire/firestore';
 import { GameUserPoint, GameUserState } from '@app/models/game/game-user-state';
 import { doc, getDoc } from 'firebase/firestore';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 
 @Injectable({
@@ -21,6 +21,12 @@ export class GameStateService {
     return getDoc(docRef).then(res => {
       return <GameUserState>res?.data();
     });
+  }
+
+  listenToUserGameState(): Observable<GameUserState> {
+    const gameStateCollection = collection(this.firestore, 'game-state');
+    const currentUserGameStateQuery = query(gameStateCollection, where(documentId(), '==', this.authService.getCurrentUser().uuid), limit(1));
+    return collectionData(currentUserGameStateQuery, { idField: 'id' }).pipe(map(data => data[0])) as Observable<GameUserState>;
   }
 
   getAvailablePoints(): Observable<GameUserPoint[]> {
