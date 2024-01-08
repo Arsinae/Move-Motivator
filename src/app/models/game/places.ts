@@ -6,3 +6,8 @@ export interface Place {
   pos: GeoPoint;
   imgSrc: string;
 }
+
+export interface IMove {
+  distance: number;
+  place: string;
+}

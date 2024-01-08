@@ -3,7 +3,7 @@
 
   <div class="h6 text-bold text-center py-1">{{ point.name }}</div>
 
-  <div class="popup-button text-bold text-center py-1" [class.is-current]="isCurrentPlace">
+  <div class="popup-button text-bold text-center py-1" [class.is-current]="isCurrentPlace" (click)="markerAction()">
     {{ isCurrentPlace ? 'Explorer' : DistanceText }}
   </div>
 </ng-container>

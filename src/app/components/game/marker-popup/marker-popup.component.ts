@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Place } from '@app/models/game/places';
+import { IMove, Place } from '@app/models/game/places';
 import { KilometerPipe } from '@app/pipes/kilometer.pipe';
+import { GameFunctionService } from '@app/services/functions/game-function.service';
 import { MapUtilService } from '@app/utils/map-util.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class MarkerPopupComponent implements OnInit {
 
   constructor(
     private kilometerPipe: KilometerPipe,
-    private mapUtilsService: MapUtilService
+    private mapUtilsService: MapUtilService,
+    private gameFunctionService: GameFunctionService
   ) { }
 
   ngOnInit(): void {
@@ -31,5 +33,18 @@ export class MarkerPopupComponent implements OnInit {
 
   public get DistanceText(): string {
     return `Aller (${this.kilometerPipe.transform(this.distance)}km)`
+  }
+
+  public markerAction() {
+    if (this.isCurrentPlace) {
+
+    } else {
+      this._move()
+    }
+  }
+
+  private _move() {
+    const move: IMove = {place: this.point.id, distance: this.distance};
+    this.gameFunctionService.callMovePlayer(move);
   }
 }
