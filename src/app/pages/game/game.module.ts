@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GameComponent } from './game.component';
 import { GameComponentsModule } from '@app/components/game/game.components.module';
 import { GameRoutingModule } from './game-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -12,6 +13,7 @@ import { GameRoutingModule } from './game-routing.module';
   ],
   imports: [
     CommonModule,
+    MatDialogModule,
     GameRoutingModule,
     GameComponentsModule
   ]
