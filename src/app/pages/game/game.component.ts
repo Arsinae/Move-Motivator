@@ -1,10 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { GameDialogComponent } from '@app/components/game/game-dialog/game-dialog.component';
+import { IDisplayGameDialog } from '@app/models/game/dialog';
 import { GameUserState } from '@app/models/game/game-user-state';
 import { Place } from '@app/models/game/places';
 import { AuthService } from '@app/services/auth/auth.service';
+import { GameDialogService } from '@app/services/game/game-dialog.service';
 import { GameStateService } from '@app/services/server-data/game/game-state.service';
 import { PlacesService } from '@app/services/server-data/places/places.service';
-import { Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-game',
@@ -19,11 +23,14 @@ export class GameComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription = null;
   private gameStateSubscription: Subscription = null;
   private pointsSubscription: Subscription = null;
+  private gameDialogSubscription: Subscription = null;
 
   constructor(
+    private dialogService: MatDialog,
     private authService: AuthService,
     private gameStateService: GameStateService,
-    private placeService: PlacesService
+    private placeService: PlacesService,
+    private gameDialogService: GameDialogService
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +40,9 @@ export class GameComponent implements OnInit, OnDestroy {
         this.getPoints();
       })
     });
+    this.gameDialogSubscription = this.gameDialogService.getDialogs().pipe(filter(res => res !== null)).subscribe(res => {
+      this._showDialog(res);
+    })
   }
 
   ngOnDestroy(): void {
@@ -44,6 +54,9 @@ export class GameComponent implements OnInit, OnDestroy {
     }
     if (this.pointsSubscription) {
       this.pointsSubscription.unsubscribe();
+    }
+    if (this.gameDialogSubscription) {
+      this.gameDialogSubscription.unsubscribe();
     }
   }
 
@@ -58,4 +71,7 @@ export class GameComponent implements OnInit, OnDestroy {
     });
   }
 
+  private _showDialog(dialogInfo: IDisplayGameDialog) {
+    this.dialogService.open(GameDialogComponent, {data: dialogInfo})
+  }
 }

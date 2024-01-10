@@ -1,7 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { IGameDialogResponse } from '@app/models/game/dialog';
 import { IMove, Place } from '@app/models/game/places';
 import { KilometerPipe } from '@app/pipes/kilometer.pipe';
 import { GameFunctionService } from '@app/services/functions/game-function.service';
+import { GameDialogService } from '@app/services/game/game-dialog.service';
 import { MapUtilService } from '@app/utils/map-util.service';
 
 @Component({
@@ -20,7 +22,8 @@ export class MarkerPopupComponent implements OnInit {
   constructor(
     private kilometerPipe: KilometerPipe,
     private mapUtilsService: MapUtilService,
-    private gameFunctionService: GameFunctionService
+    private gameFunctionService: GameFunctionService,
+    private gameDialogService: GameDialogService
   ) { }
 
   ngOnInit(): void {
@@ -37,10 +40,18 @@ export class MarkerPopupComponent implements OnInit {
 
   public markerAction() {
     if (this.isCurrentPlace) {
-
+      this._getDialogs();
     } else {
       this._move()
     }
+  }
+
+  private _getDialogs() {
+    this.gameFunctionService.callGetDialogs({place: this.point.id}).then((res: IGameDialogResponse) => {
+      if (res?.data && res.data.length) {
+        this.gameDialogService.setNextDialog({place: this.point, dialogs: res.data});
+      }
+    })
   }
 
   private _move() {

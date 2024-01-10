@@ -8,6 +8,7 @@ import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 import { StepNavigatorComponent } from './step-navigator/step-navigator.component';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { GameDialogComponent } from './game-dialog/game-dialog.component';
 
 
 
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
     MapComponent,
     MarkerPopupComponent,
     StepNavigatorComponent,
+    GameDialogComponent,
   ],
   imports: [
     CommonModule,
