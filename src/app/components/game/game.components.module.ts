@@ -9,6 +9,7 @@ import { StepNavigatorComponent } from './step-navigator/step-navigator.componen
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { GameDialogComponent } from './game-dialog/game-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -23,6 +24,7 @@ import { GameDialogComponent } from './game-dialog/game-dialog.component';
     CommonModule,
     RouterModule,
     MatButtonModule,
+    MatIconModule,
     LeafletModule,
     PipesModule
   ],
