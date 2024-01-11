@@ -1,3 +1,10 @@
-<ng-container *ngIf="currentDialog">
-  <div [innerHTML]="currentDialog.dialog"></div>
-</ng-container>
+<div class="game-dialog-container" [style.backgroundImage]="BackgroundImage">
+
+  <div class="close-icon" (click)="closeDialog()">
+    <mat-icon>close</mat-icon>
+  </div>
+
+  <ng-container *ngIf="currentDialog">
+    <div class="dialog-text" [innerHTML]="currentDialog.dialog"></div>
+  </ng-container>
+</div>

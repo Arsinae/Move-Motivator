@@ -27,8 +27,15 @@ export class GameDialogComponent implements OnInit {
     if (dialog) {
       this.currentDialog = dialog;
     } else {
-      this.dialogRef.close();
+      this.closeDialog();
     }
   }
 
+  public get BackgroundImage(): string {
+    return `linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), url(${this.data?.place?.imgSrc})`
+  }
+
+  public closeDialog(): void {
+    this.dialogRef.close();
+  }
 }

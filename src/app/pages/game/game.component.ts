@@ -72,6 +72,6 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private _showDialog(dialogInfo: IDisplayGameDialog) {
-    this.dialogService.open(GameDialogComponent, {data: dialogInfo})
+    this.dialogService.open(GameDialogComponent, {data: dialogInfo, width: '80%', panelClass: 'full-width-dialog'})
   }
 }
