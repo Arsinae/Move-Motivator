@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivityFormComponent } from '@app/modals/activity-form/activity-form.component';
+import { AuthService } from '@app/services/auth/auth.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -9,11 +10,17 @@ import { ActivityFormComponent } from '@app/modals/activity-form/activity-form.c
 })
 export class SideBarComponent implements OnInit {
 
+  public isAdmin: boolean = false;
+
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.authService.getCurrentUserObservable().subscribe(res => {
+      this.isAdmin = res?.isAdmin;
+    })
   }
 
   openAddActivityModal(): void {

@@ -8,6 +8,7 @@ export class User {
   public username: string = '';
   public lastLogin: Date = new Date();
   public createdAt?: Date = new Date();
+  public isAdmin?: boolean = false;
 
   static setNewUser(formGroup: FormGroup) {
     const user: User = {
@@ -23,13 +24,6 @@ export class User {
       username: credential.user.displayName ? credential.user.displayName: '',
       lastLogin: new Date()
     };
-    return user;
-  }
-
-  static formatUser(uuid: string, data: User) {
-    const user: User = {
-      uuid: uuid, email: data.email, username: data.username, lastLogin: (<any>data.lastLogin).toDate(), createdAt: (<any>data.createdAt).toDate()
-    }
     return user;
   }
 }

@@ -5,6 +5,10 @@
     <mat-divider></mat-divider>
     <a mat-list-item [routerLink]="['stats']">Statistique</a>
     <a mat-list-item [routerLink]="['goals']">Objectifs</a>
+    <ng-container *ngIf="isAdmin">
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLink]="['admin']">Admin</a>
+    </ng-container>
     <mat-divider></mat-divider>
     <a mat-list-item (click)="openAddActivityModal()">{{ 'MENU.ADD_ACTIVITY' | translate }}</a>
 </mat-nav-list>
