@@ -1,9 +1,16 @@
 import { Place } from "./places";
 
+export interface IOnCompleteDialog {
+  type: 'nextIndex' | 'endDialog';
+  value: string | number;
+}
+
 export interface IGameDialog {
-  type: 'dialog';
+  type: 'classic';
   index: number;
   dialog: string;
+  actionText: string;
+  onComplete: IOnCompleteDialog[];
 }
 
 export interface IDisplayGameDialog {

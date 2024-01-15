@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IDisplayGameDialog, IGameDialog } from '@app/models/game/dialog';
+import { IDisplayGameDialog, IGameDialog, IOnCompleteDialog } from '@app/models/game/dialog';
 
 @Component({
   selector: 'app-game-dialog',
@@ -37,5 +37,30 @@ export class GameDialogComponent implements OnInit {
 
   public closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  public completeDialog(): void {
+    if (this.currentDialog.onComplete) {
+      this.currentDialog.onComplete.forEach(completionStep => {
+        this._processCompletion(completionStep);
+      })
+    } else {
+      this.closeDialog();
+    }
+  }
+
+  private _processCompletion(completionStep: IOnCompleteDialog) {
+    switch (completionStep.type) {
+      case 'nextIndex': {
+        this.currentIndex = <number>completionStep.value;
+        this._getCurrentDialog();
+        break;
+      }
+
+      case 'endDialog': {
+        this.closeDialog();
+        break;
+      }
+    }
   }
 }

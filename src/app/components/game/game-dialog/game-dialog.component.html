@@ -4,7 +4,13 @@
     <mat-icon>close</mat-icon>
   </div>
 
-  <ng-container *ngIf="currentDialog">
-    <div class="dialog-text" [innerHTML]="currentDialog.dialog"></div>
-  </ng-container>
+  <div class="dialog-text" *ngIf="currentDialog">
+    <div [innerHTML]="currentDialog.dialog"></div>
+
+    <div class="pt-3 text-end">
+      <button mat-raised-button color="warn" (click)="completeDialog()">
+        {{ currentDialog.actionText }}
+      </button>
+    </div>
+  </div>
 </div>
