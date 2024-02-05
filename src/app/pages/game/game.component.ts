@@ -65,7 +65,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.pointsSubscription.unsubscribe();
     }
     this.pointsSubscription = this.gameStateService.getAvailablePoints().subscribe(availablePoints => {
-      this.placeService.getPlaces(availablePoints.map(point => point.id)).subscribe(res => {
+      this.placeService.getUnlockedPlaces(availablePoints.map(point => point.id)).subscribe(res => {
         this.points = res;
       });
     });
