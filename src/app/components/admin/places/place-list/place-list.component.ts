@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Place } from '@app/models/game/places';
 import { PlacesService } from '@app/services/server-data/places/places.service';
 import { firstValueFrom } from 'rxjs';
+import { PlaceFormComponent } from '../place-form/place-form.component';
 
 @Component({
   selector: 'app-place-list',
@@ -21,6 +22,7 @@ export class PlaceListComponent implements OnInit {
   private PAGE_SIZE: number = 10;
 
   constructor(
+    private dialog: MatDialog,
     private placeService: PlacesService
   ) { }
 
@@ -37,6 +39,18 @@ export class PlaceListComponent implements OnInit {
       this.hasNext = places?.length === this.PAGE_SIZE ? true : false;
     }).catch(err => {
       console.log(err);
+    })
+  }
+
+  public createNewPlace() {
+    const newPlaceDialogSubscription = this.dialog.open(PlaceFormComponent, {
+      minWidth: 800,
+      data: {place: new Place()}
+    }).afterClosed().subscribe((res: Place) => {
+      if (res && res.id) {
+        this.dataSource.data.unshift(res);
+      }
+      newPlaceDialogSubscription.unsubscribe();
     })
   }
 

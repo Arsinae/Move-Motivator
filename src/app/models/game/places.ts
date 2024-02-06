@@ -1,12 +1,20 @@
 import { GeoPoint } from "@angular/fire/firestore";
 
-export interface Place {
+export class Place {
   id?: string;
   index: number;
   name: string;
   pos: GeoPoint;
   imgSrc: string;
   dungeons?: Array<string>;
+
+  constructor() {
+    this.index = 1;
+    this.name = '';
+    this.pos = new GeoPoint(0, 0);
+    this.imgSrc = null;
+    this.dungeons = [];
+  }
 }
 
 export interface IMove {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, query, where, collectionData, CollectionReference, DocumentData, getDoc, doc, documentId, limit, orderBy, startAfter } from '@angular/fire/firestore';
 import { Place } from '@app/models/game/places';
+import { addDoc } from 'firebase/firestore';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -33,4 +34,7 @@ export class PlacesService {
     return  collectionData(placesQuery, {idField: 'id'}) as Observable<Place[]>;
   }
 
+  uploadPlace(place: Place) {
+    return addDoc(this.collectionRef, Object.assign({}, place));
+  }
 }

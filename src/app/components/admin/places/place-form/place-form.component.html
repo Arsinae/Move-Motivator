@@ -1,0 +1,42 @@
+<div class="modal-title pb-3">
+  {{ place.id !== undefined ? 'Ajouter' : 'Modifier' }} un lieu
+</div>
+
+<div class="d-flex inputs-line pb-3">
+  <mat-form-field class="flex-3">
+    <input matInput [(ngModel)]="place.name" placeholder="Nom du lieu">
+  </mat-form-field>
+
+  <mat-form-field class="flex-1">
+    <input matInput [(ngModel)]="place.index" type="number" placeholder="Index">
+  </mat-form-field>
+</div>
+
+<div class="d-flex inputs-line">
+  <mat-form-field class="flex-1">
+    <input matInput [(ngModel)]="coordinate.longitude" placeholder="Longitude">
+  </mat-form-field>
+
+  <mat-form-field class="flex-1">
+    <input matInput [(ngModel)]="coordinate.latitude" type="number" placeholder="Latitude">
+  </mat-form-field>
+</div>
+
+<div class="pb-3">
+  <input class="d-none" type="file" accept="image/*" (change)="onFileSelected($event.target)" #fileUploader>
+
+  <ng-container *ngIf="!file">
+    <button mat-button class="w-100 text-center" (click)="fileUploader.click()">
+      <mat-icon>upload</mat-icon>
+      Ajouter une image
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="file">
+    <p class="text-center" (click)="fileUploader.click()"> {{ file.name }} </p>
+  </ng-container>
+</div>
+
+<button mat-raised-button color="primary" class="w-100" [disabled]="!file" (click)="createPlace()">
+  Ajouter
+</button>
