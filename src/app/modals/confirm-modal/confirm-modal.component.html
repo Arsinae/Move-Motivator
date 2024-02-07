@@ -1,0 +1,11 @@
+<div class="modal-title pb-2">{{ title }}</div>
+<mat-divider></mat-divider>
+
+<div class="pb-3">
+  {{ message }}
+</div>
+
+<div class="d-flex justify-between">
+  <button mat-button color="primary" (click)="closeDialog(false)">Annuler</button>
+  <button mat-raised-button color="danger" (click)="closeDialog(true)">Valider</button>
+</div>

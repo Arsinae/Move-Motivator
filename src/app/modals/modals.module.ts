@@ -8,10 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
-    ActivityFormComponent
+    ActivityFormComponent,
+    ConfirmModalComponent
   ],
   imports: [
     CommonModule,

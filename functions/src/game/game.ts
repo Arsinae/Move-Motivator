@@ -23,3 +23,12 @@ export async function getPlaceDialog(request: CallableRequest, firestore: Firest
   logger.info(`Result Dialog List: ${dialogs?.length} entry; ${JSON.stringify(dialogs.map(dialog => dialog.data()))}`);
   return dialogs.map(dialog => dialog.data());
 }
+
+export async function unlockPlaceForAllUsers(request: CallableRequest, firestore: Firestore) {
+  const { place } = request.data;
+  logger.info(`Unlock Place for all users = User ${request.auth?.uid}, Place: ${place}`);
+  const gameStates = (await firestore.collection('game-state').get())
+  gameStates.docs.forEach(gameState => {
+    gameState.ref.collection('points').doc(place).set({state: true});
+  })
+}

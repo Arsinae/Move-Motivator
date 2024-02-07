@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ConfirmModalComponent } from '@app/modals/confirm-modal/confirm-modal.component';
 import { Place } from '@app/models/game/places';
+import { AdminFunctionService } from '@app/services/functions/admin-function.service';
 import { PlacesService } from '@app/services/server-data/places/places.service';
 import { firstValueFrom } from 'rxjs';
 import { PlaceFormComponent } from '../place-form/place-form.component';
@@ -23,7 +25,8 @@ export class PlaceListComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private placeService: PlacesService
+    private placeService: PlacesService,
+    private adminFunctionService: AdminFunctionService
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +52,7 @@ export class PlaceListComponent implements OnInit {
     }).afterClosed().subscribe((res: Place) => {
       if (res && res.id) {
         this.dataSource.data.unshift(res);
+        this.askUnlockNewPlace(res);
       }
       newPlaceDialogSubscription.unsubscribe();
     })
@@ -57,5 +61,23 @@ export class PlaceListComponent implements OnInit {
   public setPage(page: number) {
     this.page = page;
     this._getPlacesList();
+  }
+
+  public askUnlockNewPlace(place: Place) {
+    this.dialog.open(ConfirmModalComponent, {
+      data: {title: 'Débloquer pour tous les joueurs', message: 'Le lieu sera directement accessible pour tous les joueurs'}
+    }).afterClosed().subscribe(res => {
+      if (res === true) {
+        this._unlockPlaceForAllUsers(place.id);
+      }
+    })
+  }
+
+  public _unlockPlaceForAllUsers(placeId: string) {
+    this.adminFunctionService.unlockPlaceForAllUsers(placeId).then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    })
   }
 }

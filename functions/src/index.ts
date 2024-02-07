@@ -2,7 +2,7 @@ import {onCall} from "firebase-functions/v2/https";
 import {onDocumentCreated} from 'firebase-functions/v2/firestore';
 import * as admin from 'firebase-admin';
 import { aggregateDistanceInfos, storeDistance, recalculateDailyAverage } from "./distance/distance";
-import { getPlaceDialog, movePlayer } from './game/game';
+import { getPlaceDialog, movePlayer, unlockPlaceForAllUsers } from './game/game';
 
 admin.initializeApp();
 
@@ -27,3 +27,7 @@ exports.movePlayer = onCall((request) => {
 exports.getDialogs = onCall(async (request) => {
   return await getPlaceDialog(request, admin.firestore());
 });
+
+exports.unlockPlaceForAllUsers = onCall(request => {
+  unlockPlaceForAllUsers(request, admin.firestore());
+})
