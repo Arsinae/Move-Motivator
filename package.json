@@ -33,6 +33,7 @@
     "highcharts": "^10.1.0",
     "leaflet": "^1.9.4",
     "ngx-device-detector": "^6.0.2",
+    "ngx-editor": "14.2.0",
     "rxfire": "^6.0.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

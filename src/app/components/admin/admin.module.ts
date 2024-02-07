@@ -9,8 +9,7 @@ import { PlaceFormComponent } from './places/place-form/place-form.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-
-
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatTableModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NgxEditorModule
   ],
   exports: [
     PlaceListComponent

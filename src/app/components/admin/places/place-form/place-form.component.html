@@ -22,7 +22,7 @@
   </mat-form-field>
 </div>
 
-<div class="pb-3">
+<div class="pb-2">
   <input class="d-none" type="file" accept="image/*" (change)="onFileSelected($event.target)" #fileUploader>
 
   <ng-container *ngIf="!file">
@@ -35,6 +35,11 @@
   <ng-container *ngIf="file">
     <p class="text-center" (click)="fileUploader.click()"> {{ file.name }} </p>
   </ng-container>
+</div>
+
+<div class="editor mb-2" *ngIf="place.id === undefined && editor">
+  <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+  <ngx-editor [editor]="editor" [(ngModel)]="dialog.dialog" [disabled]="false" placeholder="Dialogue par défaut"></ngx-editor>
 </div>
 
 <button mat-raised-button color="primary" class="w-100" [disabled]="!file" (click)="createPlace()">

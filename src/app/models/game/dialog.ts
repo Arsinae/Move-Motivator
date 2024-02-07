@@ -5,12 +5,20 @@ export interface IOnCompleteDialog {
   value: string | number;
 }
 
-export interface IGameDialog {
+export class IGameDialog {
   type: 'classic';
   index: number;
   dialog: string;
   actionText: string;
   onComplete: IOnCompleteDialog[];
+
+  constructor(index: number) {
+    this.type = 'classic';
+    this.index = index;
+    this.dialog = '';
+    this.actionText = 'Valider'
+    this.onComplete = [];
+  }
 }
 
 export interface IDisplayGameDialog {

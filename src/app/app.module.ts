@@ -27,6 +27,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ComponentsModule } from './components/components.module';
 import localeFr from '@angular/common/locales/fr';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { NgxEditorModule } from 'ngx-editor';
 
 registerLocaleData(localeFr);
 
@@ -44,6 +45,7 @@ registerLocaleData(localeFr);
     MatIconModule,
     MatSidenavModule,
     MatButtonModule,
+    NgxEditorModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
