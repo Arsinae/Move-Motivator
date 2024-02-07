@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, query, where, collectionData, CollectionReference, DocumentData, getDoc, doc, documentId, limit, orderBy, startAfter } from '@angular/fire/firestore';
+import { Firestore, collection, query, where, collectionData, CollectionReference, DocumentData, getDoc, doc, documentId, limit, orderBy, endAt, startAt, startAfter } from '@angular/fire/firestore';
 import { IGameDialog } from '@app/models/game/dialog';
 import { Place } from '@app/models/game/places';
 import { addDoc } from 'firebase/firestore';
@@ -31,7 +31,7 @@ export class PlacesService {
   }
 
   getPlacesList(lastIndex: number, pageSize: number): Observable<Place[]> {
-    const placesQuery = query(this.collectionRef, orderBy('index'), limit(pageSize), startAfter(lastIndex ? lastIndex : 0));
+    const placesQuery = query(this.collectionRef, orderBy('index', 'desc'), limit(pageSize), lastIndex ? startAfter(lastIndex) : endAt(0));
     return collectionData(placesQuery, {idField: 'id'}) as Observable<Place[]>;
   }
 

@@ -8,8 +8,8 @@ export class Place {
   imgSrc: string;
   dungeons?: Array<string>;
 
-  constructor() {
-    this.index = 1;
+  constructor(index: number = 1) {
+    this.index = index;
     this.name = '';
     this.pos = new GeoPoint(0, 0);
     this.imgSrc = null;

@@ -17,7 +17,6 @@ export class PlaceListComponent implements OnInit {
 
   public displayedColumns: string[] = ['index', 'name', 'dungeons', 'action'];
   public dataSource = new MatTableDataSource<Place>([]);
-  public page: number = 0;
   public lastIndex: number = undefined;
   public hasNext: boolean = false;
 
@@ -37,7 +36,7 @@ export class PlaceListComponent implements OnInit {
   private _getPlacesList() {
     firstValueFrom(this.placeService.getPlacesList(this.lastIndex, this.PAGE_SIZE)).then(places => {
       console.log(places);
-      this.dataSource.data = places;
+      this.dataSource.data = this.dataSource.data.concat(places);
       this.lastIndex = (places.length > 0) ? places[places.length - 1].index : null;
       this.hasNext = places?.length === this.PAGE_SIZE ? true : false;
     }).catch(err => {
@@ -48,18 +47,18 @@ export class PlaceListComponent implements OnInit {
   public createNewPlace() {
     const newPlaceDialogSubscription = this.dialog.open(PlaceFormComponent, {
       minWidth: 800,
-      data: {place: new Place()}
+      data: {place: new Place(this.dataSource.data[0].index + 1)}
     }).afterClosed().subscribe((res: Place) => {
       if (res && res.id) {
         this.dataSource.data.unshift(res);
+        this.dataSource.data = this.dataSource.data;
         this.askUnlockNewPlace(res);
       }
       newPlaceDialogSubscription.unsubscribe();
     })
   }
 
-  public setPage(page: number) {
-    this.page = page;
+  public loadMore() {
     this._getPlacesList();
   }
 

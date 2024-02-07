@@ -37,12 +37,8 @@
   </table>
 
   <div class="py-1 px-3 text-end background-light-gray">
-    <button mat-icon-button class="mr-3" [disabled]="page === 0" (click)="setPage(page - 1)">
-      <mat-icon>chevron_left</mat-icon>
-    </button>
-
-    <button mat-icon-button [disabled]="!hasNext" (click)="setPage(page + 1)">
-      <mat-icon>chevron_right</mat-icon>
+    <button mat-icon-button [disabled]="!hasNext" (click)="loadMore()">
+      <mat-icon>autorenew</mat-icon>
     </button>
   </div>
 </div>
